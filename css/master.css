@@ -83,7 +83,7 @@ main {
             font-weight: 200;
         }
         figure {
-          border-radius: 50%;
+            border-radius: 50%;
             border: 6px solid #fff9;
             height: 200px;
             width: 200px;
