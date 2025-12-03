@@ -15,14 +15,16 @@ class Adoption extends Model
         'user_id',
         'pet_id',
     ];
-    // relationships 
-    // adoptions belongTo user 
 
+
+    //Relationships:
+    //adoption belongTo user
     public function user(){
-        return $this->belongsTo(User::class); 
+        return $this->belongsTo(User::class);
     }
+    //adoptions brlongTo pet
     public function pet(){
-        return $this->belongsTo(Pet::class); 
+        return $this->belongsTo(Pet::class);
     }
-    
 }
+

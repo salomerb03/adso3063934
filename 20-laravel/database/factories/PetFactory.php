@@ -16,28 +16,56 @@ class PetFactory extends Factory
      */
     public function definition(): array
     {
-
         $petNames = [
-            'Luna', 'Bella', 'Charlie', 'Lucy', 'Daisy', 'Max', 'Rosie', 'Lola',
-            'Lily', 'Leo', 'Stella', 'Cooper', 'Bailey', 'Oliver', 'Milo', 'Buddy',
-            'Sadie', 'Penny', 'Coco', 'Sophie', 'Olive', 'Ruby', 'Ollie', 'Molly',
-            'Pepper', 'Willow', 'Gracie', 'Scout', 'Maggie', 'Jack', 'Finn', 'Chloe',
-            'Frankie', 'Poppy', 'Gus', 'Nala', 'Teddy', 'Ziggy', 'Ginger', 'Loki',
-            'Piper', 'Lulu', 'Bear', 'Ellie', 'Rocky', 'Louie', 'Jasper', 'Winston',
-            'Tucker', 'Cleo', 'Duke', 'Harley', 'Zeus', 'Blue', 'Koda', 'Toby',
-            'Bentley', 'Jax', 'Kobe', 'Ace', 'Apollo', 'Shadow', 'Bruno', 'Moose',
-            'Murphy', 'Marley', 'Archie', 'Hank', 'Thor', 'Benji', 'Simba', 'Bandit',
-            'Dexter', 'King', 'Diesel', 'Beau', 'Maverick', 'Cash', 'Henry', 'Mia',
-            'Riley', 'Roxy', 'Nova', 'Honey', 'Lady', 'Lucky', 'Princess', 'Winnie',
-            'Maya', 'Dixie', 'Athena', 'Zoe', 'Layla', 'Remi', 'Lexi', 'Sasha', 'Oakley'
+            // Dogs (20 names)
+            "Max",
+            "Buddy",
+            "Charlie",
+            "Cooper",
+            "Rocky",
+            "Bear",
+            "Duke",
+            "Jack",
+            "Tucker",
+            "Oliver",
+            "Leo",
+            "Milo",
+            "Zeus",
+            "Winston",
+            "Teddy",
+            "Murphy",
+            "Harley",
+            "Henry",
+            "Sam",
+            "Louie",
 
+            // Cats (20 names)
+            "Luna",
+            "Bella",
+            "Lucy",
+            "Chloe",
+            "Sophie",
+            "Lily",
+            "Molly",
+            "Daisy",
+            "Zoe",
+            "Stella",
+            "Lola",
+            "Maggie",
+            "Penny",
+            "Roxy",
+            "Ruby",
+            "Gracie",
+            "Rosie",
+            "Ellie",
+            "Mia",
+            "Piper"
         ];
 
-        
         $dogBreeds = [
             "Labrador Retriever",
-            "French Bulldog",
             "German Shepherd",
+            "French Bulldog",
             "Golden Retriever",
             "Poodle",
             "Bulldog",
@@ -46,6 +74,7 @@ class PetFactory extends Factory
             "Siberian Husky",
             "Chihuahua"
         ];
+
         $catBreeds = [
             "Persian",
             "Siamese",
@@ -54,36 +83,39 @@ class PetFactory extends Factory
             "Bengal",
             "Sphynx",
             "Ragdoll",
-            "Scottish Fold",
             "Abyssinian",
+            "Scottish Fold",
             "Russian Blue"
         ];
-        $pigBreeds = [
-            "Large White",
-            "Duroc",
-            "Landrace",
-            "Pietrain",
-            "Hampshire",
-            "Berkshire",
-            "Yorkshire",
-            "Chester White",
-            "Tamworth",
-            "Vietnamese Pot-bellied"
-        ];
+
         $birdBreeds = [
-            "Andean Condor",
-            "Toucan",
-            "Hummingbird",
-            "Scarlet Macaw",
-            "Blue-and-yellow Macaw",
-            "Amazon Parrot",
+            "Parakeet",
             "Canary",
             "Cockatiel",
-            "Barn Owl",
-            "Harpy Eagle"
+            "Lovebird",
+            "African Grey Parrot",
+            "Macaw",
+            "Finch",
+            "Cockatoo",
+            "Budgerigar",
+            "Amazon Parrot"
         ];
 
-        $kind = fake()->randomElement(array('Dog', 'Cat', 'Pig', 'Bird'));
+        $pigBreeds = [
+            "Yorkshire",
+            "Duroc",
+            "Berkshire",
+            "Hampshire",
+            "Landrace",
+            "Chester White",
+            "Tamworth",
+            "Large Black",
+            "Pietrain",
+            "Vietnamese Pot-bellied"
+        ];
+
+        $kind = fake()->randomElement(['Dog', 'Cat', 'Bird', 'Pig']);
+
         switch ($kind) {
             case 'Dog':
                 $breed = fake()->randomElement($dogBreeds);
@@ -91,22 +123,22 @@ class PetFactory extends Factory
             case 'Cat':
                 $breed = fake()->randomElement($catBreeds);
                 break;
-            case 'Pig':
-                $breed = fake()->randomElement($pigBreeds);
-                break;
             case 'Bird':
                 $breed = fake()->randomElement($birdBreeds);
+                break;
+            case 'Pig':
+                $breed = fake()->randomElement($pigBreeds);
                 break;
         }
 
         return [
-            'name'        => fake()->randomElement($petNames),
-            'kind'        => $kind,
-            'weight'      => fake()->numerify('#.#'),
-            'age'         => fake()->numerify('#'),
-            'breed'       => $breed,
-            'location'    => fake()->city(),
-            'description' => fake()->sentence(8)
+            'name' => fake()->randomElement($petNames),
+            'kind' => $kind,
+            'weight' => fake()->numerify('#.#'),
+            'age' => fake()->numerify('#'),
+            'breed' => $breed,
+            'location' => fake()->city(),
+            'description' => fake()->sentence(8),
         ];
     }
 }

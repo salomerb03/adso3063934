@@ -1,10 +1,74 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/', function () {
+    //return "This is route: 🍎";
+    return view('welcome');
+});
+
+Route::get('hello/{name}', function () {
+    return "<h1>Hello" . request()->name . "</h1>";
+});
+
+Route::get('show/pets', function () {
+    $pets = App\Models\Pet::orderBy('id', 'asc')->get();
+    dd($pets->toArray());
+});
+
+
+Route::get('show/pets', function () {
+    $pets = App\Models\Pet::orderBy('id', 'asc')->get();
+
+    foreach ($pets as $pet) {
+        echo "ID: " . $pet->id . "<br>";
+    }
+});
+
+
+Route::get('challenge', function () {
+$users = \App\Models\User::orderBy('id', 'asc')->take(20)->get();
+
+    
+    $html = '<table border="1" style="border-collapse: collapse; width: 50%;">
+        <tr>
+            <th>Id</th>
+            <th>Foto</th>
+            <th>Nombre Completo</th>
+            <th>Edad</th>
+            <th>Creación</th>
+        </tr>';
+    
+    foreach ($users as $user) {
+        $html .= '<tr>
+            <td style="text-align: center;">' . $user->id . '</td>
+            <td style="text-align: center;"><img src="' . $user->photo . '" width="100"></td>
+            <td style="padding: 10px;">' . $user->fullname . '</td>
+            <td style="text-align: center;">' . \Carbon\Carbon::parse($user->birthdate)->age . '</td>
+            <td style="padding: 10px;">' . $user->created_at->diffForHumans() . '</td>
+        </tr>';
+    }
+    
+    $html .= '</table>';
+    
+    return $html;
+});
+
+Route::get('view/pets', function () {
+    $pets = App\Models\Pet::all();
+    return view('view-pets')->with('pets', $pets);
+});
+
+Route::get('view/pet/{id}', function () {
+    $pet = App\Models\Pet::find(request()->id);
+    // dd($pet->toArray());
+    return view('view-pet')->with('pet', $pet);
 });
 
 Route::get('/dashboard', function () {
@@ -12,70 +76,26 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resources([
+        'users' => UserController::class,
+     'pets' => PetController::class,
+       /*     'adoptions' => AdoptionController::class, */
+    ]);
 });
 
-Route::get('hello', function() {
-    return "<h1>Hello folks, Have a nice day 😍</h1";
-});
-
-Route::get('hello/{name}', function() {
-    return "<h1>Hello: ".request()->name."</h1";
-});
-
-Route::get('show/pets', function() {
-    $pets = App\Models\Pet::all();
-    dd($pets->toArray()); // Dump & Die
-});
-
-Route::get('show/pet/{id}', function() {
-    $pet = App\Models\Pet::find(request()->id);
-    dd($pet->toArray());
-});
-
-Route::get('challenge', function() {
-    $users = App\Models\User::take(20)->get();
-    $stylesTH = "style='background: gray; color: white; padding: 0.4rem'";
-    $stylesTD = "style='border: 1px solid gray; padding: 0.4rem'";
-    //dd($users->toArray());
-       $code = "<table style='border-collapse: collapse; margin: 2rem auto; font-family: Arial'>
-                <tr>
-                    <th $stylesTH>Id</th>
-                    <th $stylesTH'>Photo</th>
-                    <th $stylesTH'>Fullname</th>
-                    <th $stylesTH'>Age</th>
-                    <th $stylesTH'>Created At</th>
-                </tr>";
-    foreach($users as $user) {
-        $code .= ($user->id%2 == 0) ? "<tr style='background: #ddd'>" : "<tr>";
-        $code .=    "<td $stylesTD>".$user->id."</td>";
-        $code .=    "<td $stylesTD><img src='".asset('images/'.$user->photo)."' width='40px'></td>";
-        $code .=    "<td $stylesTD>".$user->fullname."</td>";
-        $code .=    "<td $stylesTD>".Carbon\Carbon::parse($user->birthdate)->age." years old</td>";
-        $code .=    "<td $stylesTD>".$user->created_at->diffForHumans()."</td>";
-        $code .= "</tr>";
-    }
-    return $code . "</table>";
-});
-
-Route::get('view/pets', function() {
-    $pets = App\Models\Pet::all();
-    return view('view-pets')->with('pets', $pets);
-});
-
-Route::get('view/pet/{id}', function() {
-    $pet = App\Models\Pet::find(request()->id);
-    return view('view-pet')->with('pet', $pet);
-});
+//Search
+Route::post('search/users', [UserController::class, 'search']);
+Route::post('/search/pets', [PetController::class, 'search'])->name('pets.search');
 
 
+//Export
+Route::get('export/users/pdf', [UserController::class, 'pdf']);
+Route::get('export/users/excel', [UserController::class, 'excel']);
+Route::get('export/pets/pdf', [PetController::class, 'pdf']);
+Route::get('export/pets/excel', [PetController::class, 'excel']);
 
-
-Route::get('view/pet/{id}', function() {
-    $pet = App\Models\Pet::find(request()->id);
-    return view('view-pet')->with('pet', $pet);
-});
+//Import
+Route::get('import/users', [UserController::class, 'import']);
+Route::get('import/pets', [PetController::class, 'import']);
 
 require __DIR__.'/auth.php';
