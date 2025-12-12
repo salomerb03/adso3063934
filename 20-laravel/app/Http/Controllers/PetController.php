@@ -7,69 +7,59 @@ use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\PetsExport;
-use App\Imports\PetsImport;
+
 
 class PetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //$users = User::all();
-        $pets = Pet::orderBy('id', 'desc')->paginate(9);
-        //dd($users->toArray());
-        return view('pets.index')->with('pets', $pets);
-    }
+        // $pets = Pet::all();
+        $pets = Pet::orderBy('id', 'asc')->paginate(20);
 
-    /**
-     * Show the form for creating a new resource.
-     */
+        return view('pets.index', compact('pets'));
+        // dd($pets->toArray());
+    }
     public function create()
     {
         return view('pets.create');
+        //  dd($pets->toArray());
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'name' => ['required', 'string'],
-            'image' => ['required', 'image'],
-            'kind' => ['required'],
-            'weight' => ['required'],
-            'age' => ['required'],
-            'breed' => ['required', 'string'],
-            'location' => ['required', 'string'],
-            'description' => ['required', 'string'],
+            'name'          => ['required', 'string'],
+            'image'         => ['image'],
+            'kind'          => ['required'],
+            'weight'        => ['required', 'numeric'],
+            'age'           => ['required', 'numeric'],
+            'breed'         => ['required', 'string'],
+            'location'      => ['required','string'],
+            'description'   => ['required', 'string'],
         ]);
         if ($request->hasFile('image')) {
             $image = time() . '.' . $request->image->extension();
             $request->image->move(public_path('images'), $image);
+        } else {
+            $image = 'no-image.png';
         }
 
         $pet = new Pet;
-        $pet->name  = $request->name;
-        $pet->image     = $image;
-        $pet->kind    = $request->kind;
-        $pet->weight = $request->weight;
-        $pet->age     = $request->age;
+        $pet->name      = $request->name;
+        $pet->image = $image;
+        $pet->kind      = $request->kind;
+        $pet->weight    = $request->weight;
+        $pet->age       = $request->age;
         $pet->breed     = $request->breed;
-        $pet->location     = $request->location;
-        $pet->description     = $request->description;
+        $pet->location  = $request->location;
+        $pet->description  = $request->description;
 
         if ($pet->save()) {
-            return redirect('pets')->with('message', 'The pet: ' . $pet->name . ' was successfully added!');
+            return redirect('pets')->with('message', 'The pet:  ' . $pet->name . '  was successfully added!');
         }
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Pet $pet)
     {
+
         return view('pets.show')->with('pet', $pet);
     }
 
@@ -81,89 +71,91 @@ class PetController extends Controller
         return view('pets.edit')->with('pet', $pet);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Pet $pet)
     {
-        $validation = $request->validate([
-            'name' => ['required', 'string'],
-            'image' => ['required', 'image'],
-            'kind' => ['required'],
-            'weight' => ['required'],
-            'age' => ['required'],
-            'breed' => ['required', 'string'],
-            'location' => ['required', 'string'],
-            'description' => ['required', 'string'],
+        // VALIDACIÓN
+        $request->validate([
+            'name'        => ['required', 'string'],
+            'kind'        => ['required', 'string'],
+            'weight'      => ['required', 'numeric'],
+            'age'         => ['required', 'numeric'],
+            'breed'       => ['nullable', 'string'],
+            'location'    => ['nullable', 'string'],
+            'description' => ['nullable', 'string'],
+            'active'      => ['required'],     // tinyint
+            'image'       => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif'],
         ]);
 
-        if ($validation) {
-            // dd($request->all());
-            if ($request->hasFile('image')) {
-                $image = time() . '.' . $request->image->extension();
-                $request->image->move(public_path('images'), $image);
-                if ($request->originmage != 'null.webp') {
-                    unlink(public_path('images/') . $request->originimage);
-                }
-            } else {
-                $image = $request->originimage;
+        // PROCESAR FOTO
+
+        $image = $pet->image; // Imagen actual guardada
+
+        if ($request->hasFile('image')) {
+
+            // Crear nuevo nombre único
+            $imageName = time() . '.' . $request->image->extension();
+
+            // Subir nueva imagen
+            $request->image->move(public_path('images/'), $imageName);
+
+            // Eliminar imagen anterior si NO es la imagen por defecto
+            if ($pet->image !== 'no-image.png' && file_exists(public_path('images/' . $pet->image))) {
+                unlink(public_path('images/' . $pet->image));
             }
-        }
-        $pet->name  = $request->name;
-        $pet->image     = $image;
-        $pet->kind    = $request->kind;
-        $pet->weight = $request->weight;
-        $pet->age     = $request->age;
-        $pet->location     = $request->location;
-        $pet->description     = $request->description;
 
-        if ($pet->save()) {
-            return redirect('pets')->with('message', 'The pet: ' . $pet->name . ' was successfully edited!');
+            // Reemplazar la imagen
+            $image = $imageName;
         }
+
+        // ====================================
+        // ACTUALIZAR CAMPOS
+        // ====================================
+
+        $pet->name        = $request->name;
+        $pet->kind        = $request->kind;
+        $pet->weight      = $request->weight;
+        $pet->age         = $request->age;
+        $pet->breed       = $request->breed;
+        $pet->location    = $request->location;
+        $pet->description = $request->description;
+        $pet->active      = $request->active;
+        $pet->image       = $image;
+
+        // GUARDAR
+        $pet->save();
+
+        return redirect('pets')->with('message', 'The pet ' . $pet->name . ' was successfully updated!');
     }
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Pet $pet)
     {
-        if ($pet->image != 'null.webp') {
-            unlink(public_path('images/') . $pet->image);
+        if($pet->image != 'no-image.png'){
+            unlink(public_path('images/').$pet->image);
         }
-        if ($pet->delete()) {
-            return redirect('pets')->with('message', 'The pet: ' . $pet->name . ' was successfully deleted!');
+        if($pet->delete()){
+            return redirect('pets')->with('message','The pet: '.$pet->name.'Was successfully deleted');
         }
     }
-
-    //Search by scope
-  public function search(Request $request)
-{
-    $pets = Pet::names($request->q)
-                ->orderBy('id', 'asc')
-                ->paginate(20);
-
-    return view('pets.search', compact('pets'))->render();
-}
-
-
-    //export pdf
-    public function pdf(){
+    public function search(Request $request){
+        $pets = Pet::names($request->q)->orderBy('id','desc')->paginate(20);
+        return view('pets.search')->with('pets',$pets);
+    }
+    /**
+     * Export all pets to PDF
+     */
+    public function pdf()
+    {
         $pets = Pet::all();
-        $pdf = PDF:: loadView('pets.pdf', compact('pets'));
+        $pdf = Pdf::loadView('pets.pdf', compact('pets'));
         return $pdf->download('allpets.pdf');
     }
 
-    //Export Excel
-public function excel(){
+    /**
+     * Export all pets to Excel
+     */
+    public function excel()
+    {
         return Excel::download(new PetsExport, 'allpets.xlsx');
     }
 
-    //Import excel
-public function import(Request $request){
-        $file = $request->file('file');
-        Excel::import(new PetsImport, $file);
-        return redirect()->back()->with('message', 'Users imported successfull!');
-    }
-
+    
 }

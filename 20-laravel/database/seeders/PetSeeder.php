@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents; 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Pet;
 
@@ -13,44 +13,46 @@ class PetSeeder extends Seeder
      */
     public function run(): void
     {
-        $pet = new Pet();
-        $pet->name        = 'Firulais';
-        $pet->kind        = 'Dog';
-        $pet->weight      = 7.6;
-        $pet->age         = 2;
-        $pet->breed       = 'French Bulldog';
-        $pet->location    = 'Paris';
+        $pet = new Pet;
+        $pet->name = 'Firulais';
+        $pet->kind = 'Dog';
+        $pet->weight = 7.6;
+        $pet->age = 2;
+        $pet->breed = 'French Bulldog';
+        $pet->location = 'Paris';
         $pet->description = 'Black dog, so charming, lovely';
         $pet->save();
 
-        $pet = new Pet();
-        $pet->name        = 'Killer';
-        $pet->kind        = 'Dog';
-        $pet->weight      = 18;
-        $pet->age         = 6;
-        $pet->breed       = 'Cane Corso';
-        $pet->location    = 'Milan';
-        $pet->description = 'Explosive & Hungry, be carefully with it, Danger';
+        $pet = new Pet;
+        $pet->name = 'Killer';
+        $pet->kind = 'Dog';
+        $pet->weight = 18;
+        $pet->age = 6;
+        $pet->breed = 'Canne Corso';
+        $pet->location = 'Millan';
+        $pet->description = 'Explosive & , be carefully with it, Danger';
         $pet->save();
 
-        $pet = new Pet();
-        $pet->name        = 'Kiara';
-        $pet->kind        = 'cat';
-        $pet->weight      = 3.2;
-        $pet->age         = 1;
-        $pet->breed       = 'Siamese';
-        $pet->location    = 'Rome';
-        $pet->description = 'Charming and playful cat';
+        $pet = new Pet;
+        $pet->name = 'Pistacho';
+        $pet->kind = 'Cat';
+        $pet->weight = 5;
+        $pet->age = 1;
+        $pet->breed = 'Mestizo';
+        $pet->location = 'Manizales';
+        $pet->description = 'Beatifull & , sweet';
         $pet->save();
 
-        $pet = new Pet();
-        $pet->name        = 'Carrancho';
-        $pet->kind        = 'pig';
-        $pet->weight      = 27.4;
-        $pet->age         = 4;
-        $pet->breed       = 'Mini Pig';
-        $pet->location    = 'Berlin';
-        $pet->description = 'Lazy pig, loves to eat and sleep';
+        $pet = new Pet;
+        $pet->name = 'Pipo';
+        $pet->kind = 'Pajaro';
+        $pet->weight = 2.5;
+        $pet->age = 2;
+        $pet->breed = 'Guacamayo';
+        $pet->location = 'Asia';
+        $pet->description = 'Colorido y amigable';
         $pet->save();
+
+
     }
 }

@@ -31,53 +31,44 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
                 <th>Image</th>
                 <th>Kind</th>
-                <th>Weight</th>
-                <th>Age</th>
+                <th>Name</th>
                 <th>Breed</th>
+                <th>Age</th>
+                <th>Weight</th>
                 <th>Location</th>
                 <th>Description</th>
-                <th>Active</th>
                 <th>Status</th>
-
             </tr>
         </thead>
         <tbody>
             @foreach ($pets as $pet)
             <tr>
                 <td>{{ $pet->id }}</td>
-                <td>{{ $pet->name }}</td>
-                <td>{{ $pet->kind }}</td>
-                <td>{{ $pet->weight }}</td>
-                <td>{{ Carbon\Carbon::parse($pet->birthdate)->age }} years old</td>
-                <td>{{ $pet->breed }}</td>
-                <td>{{ $pet->location }}</td>
-                <td>{{ $pet->description }}</td>
-                <td>
-                    @if ($pet->active == 1)
-                        Active
-                    @else
-                        Inactive
-                    @endif
-                </td>
-                <td>
-                    @if ($pet->status == 1)
-                        adoptado
-                    @else
-                        disponible
-                    @endif
-                </td>
-
                 <td>
                     @php
-                        $extension = substr($pet->image, -4);
+                        $filename = $pet->image ?? 'no-image.png';
+                        $extension = pathinfo($filename, PATHINFO_EXTENSION);
                     @endphp
-                    @if ($extension != 'webp' && $extension != '.svg')
-                        <img src="{{ public_path().'/images/'.$pet->image }}" width="96px">
+                    @if (in_array(strtolower($extension), ['jpg','jpeg','png','gif','webp']))
+                        <img src="{{ public_path().'/images/'.$filename }}" width="96px">
                     @else
-                        Webp|SVG
+                        {{ strtoupper($extension) }}
+                    @endif
+                </td>
+                <td>{{ $pet->kind }}</td>
+                <td>{{ $pet->name }}</td>
+                <td>{{ $pet->breed }}</td>
+                <td>{{ $pet->age }}</td>
+                <td>{{ $pet->weight }}</td>
+                <td>{{ $pet->location }}</td>
+                <td>{{ Str::limit($pet->description, 60) }}</td>
+                <td>
+                    @if ($pet->status == 1)
+                        Available
+                    @else
+                        Adopted
                     @endif
                 </td>
             </tr>

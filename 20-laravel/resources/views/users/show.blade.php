@@ -1,44 +1,47 @@
 @extends('layouts.dashboard')
 
 @section('title', 'Show User: Larapets 🐶')
-
 @section('content')
-    <h1 class="text-4xl text-white flex gap-2 items-center justify-center pb-4 border-b-2 border-neutra-50 mb-10">
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-12" fill="currentColor" viewBox="0 0 256 256">
+
+    <h1
+        class="text-white mt-16 text-5xl font-extrabold tracking-wide flex gap-3 items-center justify-center pb-6 px-8 py-4
+       bg-gradient-to-r  to-indigo-00/40 backdrop-blur-xl rounded-2xl shadow-2xl ">
+        <svg xmlns="http://www.w3.org/2000/svg" class="items-center justify-center" width="34" height="34" fill="#fff"
+            viewBox="0 0 256 256">
             <path
-                d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32A8,8,0,0,1,176,128Z">
+                d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
             </path>
         </svg>
         Show User
     </h1>
-    {{-- Breadcrumbs --}}
-    <div class="breadcrumbs text-sm text-white">
+
+    <div class="breadcrumbs text-sm ">
         <ul>
             <li>
-                <a href="{{ url('dashboard') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                            d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z">
-                        </path>
+                <a>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-4 w-4 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                     </svg>
                     Dashboard
                 </a>
             </li>
             <li>
-                <a href="{{ url('users') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                            d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z">
-                        </path>
+                <a>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="h-4 w-4 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                     </svg>
                     Users Module
                 </a>
             </li>
             <li>
                 <span class="inline-flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32A8,8,0,0,1,176,128Z">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="h-4 w-4 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                         </path>
                     </svg>
                     Add User
@@ -46,72 +49,52 @@
             </li>
         </ul>
     </div>
-    {{-- -Card --}}
+    {{-- Card --}}
     <div class="bg-[#0009] p-10 rounded-sm">
-        {{-- -Photo --}}
         <div
-            class="avatar flex flex-col gap-2 items-center justify-center cursor-pointer hover:scale-110 transition ease-in">
+            class="avatar flex flex-col items-center justify-center gap-2 cursor-pointer hover:scale-110 transition ease-in">
             <div class="mask mask-squircle w-60">
                 <img src="{{ asset('images/' . $user->photo) }}" />
             </div>
         </div>
-        {{-- -Data --}}
-        <div class="flex gap-2 flex-col md:flex-row">
-            <ul class="list bg-[#0009] mt-4 text-white rounded-box shadow-md">
+        {{-- data --}}
+        <div class="flex gap-2">    
+            <ul class="list bg-[#0009] text-white mt-4 rounded-box shadow-md">
                 <li class="list-row">
-                    <span class="text-[#fff9] font-semibold">Document:</span> <span> {{ $user->document }}</span>
+                    <span class="text-[#fff9]">Document: <span>{{ $user->document }}</span></span>
                 </li>
                 <li class="list-row">
-                    <span class="text-[#fff9] font-semibold">FullName:</span> <span class="text-[#fff9]">
-                        {{ $user->fullname }}</span>
+                    <span class="text-[#fff9]">FullName: <span>{{ $user->fullname }}</span></span>
                 </li>
                 <li class="list-row">
-                    <span class="text-[#fff9] font-semibold">Gender:</span> <span class="text-[#fff9]">
-                        {{ $user->gender }}</span>
+                    <span class="text-[#fff9]">Gender: <span>{{ $user->gender }}</span></span>
                 </li>
                 <li class="list-row">
-                    <span class="text-[#fff9] font-semibold">Birthdate:</span> <span class="text-[#fff9]">
-                        {{ $user->birthdate }}</span>
+                    <span class="text-[#fff9]">Birthdate: <span>{{ $user->birthdate }}</span></span>
                 </li>
                 <li class="list-row">
-                    <span class="text-[#fff9] font-semibold">Phone:</span> <span class="text-[#fff9]">
-                        {{ $user->phone }}</span>
+                    <span class="text-[#fff9]">Phone: <span>{{ $user->phone }}</span></span>
                 </li>
-                </ul>
-
-                <ul class="list bg-[#0009] mt-4 text-white rounded-box shadow-md">
-                    <li class="list-row">
-                        <span class="text-[#fff9] font-semibold">Email:</span> <span> {{ $user->email }}</span>
-                    </li>
-                    <li class="list-row">
-                        <span class="text-[#fff9] font-semibold">Active:</span> <span class="text-[#fff9]">
-                        <span>
-                            @if ($user->active == 1)
-                                <div class="badge badge-outline badge-success">Active</div>
-                            @else
-                                <div class="badge badge-outline badge-error">Inactive</div>
-                            @endif
-                        </span>
-                    </li>
-                    <li class="list-row">
-                        <span class="text-[#fff9] font-semibold">Role:</span> <span class="text-[#fff9]">
-                        <span>
-                            @if ($user->role == 'Administrator')
-                                <div class="badge badge-outline badge-success">Admin</div>
-                            @else
-                                <div class="badge badge-outline badge-error">Customer</div>
-                            @endif
-                        </span>
-                    </li>
-                    <li class="list-row">
-                        <span class="text-[#fff9] font-semibold">Created at:</span>
-                        <span>{{ $user->created_at->diffForHumans() }}</span>
-                    </li>
-                    <li class="list-row">
-                        <span class="text-[#fff9] font-semibold">Update at:</span>
-                        <span>{{ $user->updated_at->diffForHumans() }}</span>
-                    </li>
-                </ul>
+            </ul>
+            <ul class="list bg-[#0009] text-white mt-4 rounded-box shadow-md">
+                <li class="list-row">
+                    <span class="text-[#fff9]">Email: <span>{{ $user->email }}</span></span>
+                </li>
+                <li class="list-row">
+                    <span class="text-[#fff9]">Active: <span>{{ $user->active }}</span></span>
+                </li>
+                <li class="list-row">
+                    <span class="text-[#fff9]">Role: <span>{{ $user->role }}</span></span>
+                </li>
+                <li class="list-row">
+                    <span class="text-[#fff9]">Create At: <span>{{ $user->created_at }}</span></span>
+                </li>
+                <li class="list-row">
+                    <span class="text-[#fff9]">Update At: <span>{{ $user->updated_at }}</span></span>
+                </li>
+            </ul>
         </div>
     </div>
+
+
 @endsection

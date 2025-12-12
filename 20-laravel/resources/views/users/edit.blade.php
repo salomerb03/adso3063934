@@ -1,145 +1,154 @@
 @extends('layouts.dashboard')
-
-@section('title', 'Edit Users: Larapets 🙀')
+@section('title', 'Add User: Larapets')
 
 @section('content')
-    <h1 class="text-4xl text-white flex gap-2 items-center justify-center pb-4 border-b-2 border-neutra-50 mb-10">
-        <svg xmlns="http://www.w3.org/2000/svg" class="size-12" fill="currentColor" viewBox="0 0 256 256">
+
+    <h1
+        class="text-white mt-16 text-5xl font-extrabold tracking-wide flex gap-3 items-center justify-center pb-6 px-8 py-4
+       bg-gradient-to-r  to-indigo-00/40 backdrop-blur-xl rounded-2xl shadow-2xl ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#fff" viewBox="0 0 256 256">
             <path
                 d="M227.31,73.37,182.63,28.68a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H92.69A15.86,15.86,0,0,0,104,219.31L227.31,96a16,16,0,0,0,0-22.63ZM51.31,160,136,75.31,152.69,92,68,176.68ZM48,179.31,76.69,208H48Zm48,25.38L79.31,188,164,103.31,180.69,120Zm96-96L147.31,64l24-24L216,84.68Z">
             </path>
         </svg>
         Edit User
     </h1>
+
     {{-- Breadcrumbs --}}
-    <div class="breadcrumbs text-sm text-white">
+
+    <div class="breadcrumbs text-sm ">
         <ul>
             <li>
-                <a href="{{ url('dashboard') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                            d="M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z">
-                        </path>
+                <a>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-4 w-4 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                     </svg>
                     Dashboard
                 </a>
             </li>
             <li>
-                <a href="{{ url('users') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                            d="M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,95.83,95.83,0,0,1,47.22,37.71A8,8,0,0,1,250.14,206.7Z">
-                        </path>
+                <a>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="h-4 w-4 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                     </svg>
                     Users Module
                 </a>
             </li>
             <li>
                 <span class="inline-flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
-                        <path
-                            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32A8,8,0,0,1,176,128Z">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        class="h-4 w-4 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                         </path>
                     </svg>
-                    Edit User
+                    Add User
                 </span>
             </li>
         </ul>
     </div>
-    <div class="card text-black md:w-[720px] w-[320px]">
-        <form method="POST" action="{{ url('users/'.$user->id) }}" class="flex flex-col md:flex-row gap-4 mt-4"
-            enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="w-full md:w-[320px]">
-                <div
-                    class="avatar flex flex-col gap-2 items-center justify-center cursor-pointer hover:scale-110 transition ease-in">
-                    <div id="upload" class="mask mask-squircle w-48">
-                        <img id="preview" src="{{ asset('images/' . $user->photo) }}" />
-                    </div>
-                    <small class="text-white pb-0 border-white border-b flex gap-1 items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 256 256">
-                            <path
-                                d="M168,136a8,8,0,0,1-8,8H136v24a8,8,0,0,1-16,0V144H96a8,8,0,0,1,0-16h24V104a8,8,0,0,1,16,0v24h24A8,8,0,0,1,168,136Zm64-56V192a24,24,0,0,1-24,24H48a24,24,0,0,1-24-24V80A24,24,0,0,1,48,56H75.72L87,39.12A16,16,0,0,1,100.28,32h55.44A16,16,0,0,1,169,39.12L180.28,56H208A24,24,0,0,1,232,80Zm-16,0a8,8,0,0,0-8-8H176a8,8,0,0,1-6.66-3.56L155.72,48H100.28L86.66,68.44A8,8,0,0,1,80,72H48a8,8,0,0,0-8,8V192a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8Z">
-                            </path>
-                        </svg>
-                        Upload Photo
-                    </small>
-                    @error('photo')
-                        <small class="badge badge-error w-full -mt-1 text-xs py-4">{{ $message }}</small>
-                    @enderror
+
+    <div class="card w-full max-w-3xl mx-auto text-white">
+    <form method="POST" action="{{ URL('users/'.$user->id) }}" 
+          class="flex flex-col gap-6 card-body"
+          enctype="multipart/form-data">
+
+        @csrf
+        @method('PUT')
+
+        <!-- FOTO ARRIBA -->
+        <div class="flex flex-col items-center">
+            <div class="avatar cursor-pointer hover:scale-110 transition">
+                <div id="upload" class="mask mask-squircle w-32 h-32">
+                    <img id="preview" src="{{ asset('images/'.$user->photo) }}" />
                 </div>
-                <input type="file" id="photo" name="photo" class="hidden" accept="image/*">
-                <input type="hidden" name="originphoto" value="{{ $user->photo }}">
-            </div>
-            <div class="w-full md:w-[320px]">
-                {{-- Document --}}
-                <label class="label text-white">Document</label>
-                <input type="number" class="input bg-[#fff]" name="document" placeholder="123456789"
-                    value="{{ $user->document }}" />
-                @error('document')
-                    <small class="badge badge-error w-full -mt-1 text-xs py-4">{{ $message }}</small>
-                @enderror
-
-                {{-- Fullname --}}
-                <label class="label text-white">Full Name</label>
-                <input type="text" class="input bg-[#fff]" name="fullname" placeholder="Jeremias Springfield"
-                    value="{{ $user->fullname }}" />
-                @error('fullname')
-                    <small class="badge badge-error w-full -mt-1 text-xs py-4">{{ $message }}</small>
-                @enderror
-
-                {{-- Gender --}}
-                <label class="label text-white">Gender</label>
-                <select name="gender" class="select bg-[#fff] outline-0">
-                    <option value="">Select...</option>
-                    <option value="Female" @if ($user->gender == 'Female') selected @endif>Female</option>
-                    <option value="Male" @if ($user->gender == 'Male') selected @endif>Male</option>
-                </select>
-                @error('gender')
-                    <small class="badge badge-outline badge-error w-full mt-1 text-xs py-4">{{ $message }}</small>
-                @enderror
-
-                {{-- Birthdate --}}
-                <label class="label text-white">Birthdate</label>
-                <input type="date" class="input bg-[#fff]" name="birthdate" placeholder="1983-06-16"
-                    value="{{ $user->birthdate }}" />
-                @error('birthdate')
-                    <small class="badge badge-error w-full -mt-1 text-xs py-4">{{ $message }}</small>
-                @enderror
             </div>
 
-            <div class="w-full md:w-[320px]">
-                {{-- phone --}}
-                <label class="label text-white">Phone</label>
-                <input type="number" class="input bg-[#fff]" name="phone" placeholder="3204456321"
-                    value="{{ $user->phone }}" />
-                @error('phone')
-                    <small class="badge badge-error w-full -mt-1 text-xs py-4">{{ $message }}</small>
-                @enderror
+            <small class="flex items-center gap-2 mt-2 cursor-pointer text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="#fff" viewBox="0 0 256 256">
+                    <path d="M168,136a8,8,0,0,1-8,8H136v24a8,8,0,0,1-16,0V144H96a8,8,0,0,1,0-16h24V104a8,8,0,0,1,16,0v24h24A8,8,0,0,1,168,136Zm64-56V192a24,24,0,0,1-24,24H48a24,24,0,0,1-24-24V80A24,24,0,0,1,48,56H75.72L87,39.12A16,16,0,0,1,100.28,32h55.44A16,16,0,0,1,169,39.12L180.28,56H208A24,24,0,0,1,232,80Zm-16,0a8,8,0,0,0-8-8H176a8,8,0,0,1-6.66-3.56L155.72,48H100.28L86.66,68.44A8,8,0,0,1,80,72H48a8,8,0,0,0-8,8V192a8,8,0,0,0,8,8H208a8,8,0,0,0,8-8Z"></path>
+                </svg>
+                Upload Photo
+            </small>
 
-                <label class="label text-white">Email</label>
-                <input type="text" class="input bg-[#fff]" name="email" placeholder="Email" value="{{ $user->email }}" />
-                @error('email')
-                    <small class="badge badge-error w-full -mt-1 text-xs py-4">{{ $message }}</small>
-                @enderror
+            <input type="file" id="photo" name="photo" class="hidden" accept="image/*">
+            <input type="hidden" name="originalphoto" value="{{ $user->photo }}">
+        </div>
 
-                <button class="btn btn-outline btn-success hover:text-white mt-4 w-full">Edit</button>
+        <!-- CAMPOS ABAJO EN DOS COLUMNAS -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div class="space-y-4">
+                <div>
+                    <label class="label">Document</label>
+                    <input type="text" class="input bg-[#0006] w-full mt-1 outline-0"
+                           name="document" value="{{ old('document/', $user->document) }}" />
+                </div>
+
+                <div>
+                    <label class="label">FullName</label>
+                    <input type="text" class="input bg-[#0006] w-full mt-1 outline-0"
+                           name="fullname" value="{{ old('fullname/', $user->fullname) }}" />
+                </div>
+
+                <div>
+                    <label class="label">Gender</label>
+                    <select name="gender" class="select bg-[#0009] w-full outline-0">
+                        <option value="">Select...</option>
+                        <option value="Male" @if(old('gender/', $user->gender) == 'Male') selected @endif>Male</option>
+                        <option value="Female" @if(old('gender/', $user->gender) == 'Female') selected @endif>Female</option>
+                    </select>
+                </div>
             </div>
-        </form>
-    </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="label">Phone</label>
+                    <input type="text" class="input bg-[#0006] w-full mt-1 outline-0"
+                           name="phone" value="{{ old('phone/', $user->phone) }}" />
+                </div>
+
+                <div>
+                    <label class="label">Email</label>
+                    <input type="text" class="input bg-[#0006] w-full mt-1 outline-0"
+                           name="email" value="{{ old('email/', $user->email) }}" required />
+                </div>
+
+                <div>
+                    <label class="label">Birthdate</label>
+                    <input type="date" class="input bg-[#0006] w-full mt-1 outline-0"
+                           name="birthdate" value="{{ old('birthdate/', $user->birthdate) }}" />
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Botón -->
+        <button class="btn btn-outline bg-yellow-600 hover:bg-yellow-500 mt-4">
+            Edit
+        </button>
+
+    </form>
+</div>
+
+
+
 @endsection
+
 @section('js')
     <script>
-        $(document).ready(function () {
-            $('#upload').click(function (e) {
-                e.preventDefault();
-                $('#photo').click();
+        $(document).ready(function() {
+            $('#upload').click(function(e) {
+                e.preventDefault()
+                $('#photo').click()
             })
-            $('#photo').change(function (e) {
+            $('#photo').change(function(e) {
+                e.preventDefault()
                 $('#preview').attr('src', window.URL.createObjectURL($(this).prop('files')[0]))
             })
         })
     </script>
-
 @endsection

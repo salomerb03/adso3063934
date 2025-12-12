@@ -8,7 +8,6 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
-
 class UserController extends Controller
 {
     /**
@@ -16,10 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //$users = User::all();
-        $users = User::orderBy('id', 'desc')->paginate(9);
-        //dd($users->toArray());
-        return view('users.index')->with('users', $users);
+        // $users = User::all();
+        $users = User::orderBy('id', 'asc')->paginate(20);
+
+        return view('users.index', compact('users'));
+        // dd($users->toArray());
     }
 
     /**
@@ -36,14 +36,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'document' => ['required', 'numeric', 'unique:' . User::class],
-            'fullname' => ['required', 'string'],
-            'gender' => ['required'],
+            'document'  => ['required', 'numeric', 'unique:' . User::class],
+            'fullname'  => ['required', 'string'],
+            'gender'    => ['required'],
             'birthdate' => ['required', 'date'],
-            'photo' => ['required', 'image'],
-            'phone' => ['required'],
-            'email' => ['required', 'lowercase', 'email', 'unique:' . User::class],
-            'password' => ['required', 'confirmed'],
+            'photo'     => ['required', 'image'],
+            'phone'     => ['required'],
+            'email'     => ['required', 'lowercase', 'email', 'unique:' . User::class],
+            'password'  => ['required', 'confirmed'],
         ]);
         if ($request->hasFile('photo')) {
             $photo = time() . '.' . $request->photo->extension();
@@ -61,7 +61,7 @@ class UserController extends Controller
         $user->password  = bcrypt($request->password);
 
         if ($user->save()) {
-            return redirect('users')->with('message', 'The user: ' . $user->fullname . ' was successfully added!');
+            return redirect('users')->with('message', 'The user:  ' . $user->fullname . '  was successfully added!');
         }
     }
 
@@ -70,6 +70,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+
         return view('users.show')->with('user', $user);
     }
 
@@ -87,56 +88,54 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validation = $request->validate([
-            'document'  => ['required', 'numeric', 'unique:' . User::class . ',document,' . $user->id],
-            'fullname'  => ['required', 'string'],
-            'gender'    => ['required'],
+            'document' => ['required', 'numeric', 'unique:' . User::class . ',document,' . $user->id],
+            'fullname' => ['required', 'string'],
+            'gender' => ['required'],
             'birthdate' => ['required', 'date'],
-            'phone'     => ['required'],
-            'email'     => ['required', 'lowercase', 'email', 'unique:' . User::class . ',email,' . $user->id],
+            'phone' => ['required'],
+            'email' => ['required', 'lowercase', 'email', 'unique:' . User::class . ',email,' . $user->id],
         ]);
-
-        if ($validation) {
+        if ($request->hasFile('photo')) {
             // dd($request->all());
             if ($request->hasFile('photo')) {
                 $photo = time() . '.' . $request->photo->extension();
-                $request->photo->move(public_path('images'), $photo);
-                if ($request->originphoto != 'null.webp') {
-                    unlink(public_path('images/') . $request->originphoto);
+                $request->photo->move(public_path('images/'), $photo);
+                if ($request->originphoto != 'no-photo.png') {
+                    unlink(public_path('images/'). $request->originphoto);
                 }
             } else {
                 $photo = $request->originphoto;
             }
         }
-        $user->document  = $request->document;
-        $user->fullname  = $request->fullname;
-        $user->gender    = $request->gender;
+
+        $user->document = $request->document;
+        $user->fullname = $request->fullname;
+        $user->gender = $request->gender;
         $user->birthdate = $request->birthdate;
-        $user->photo     = $photo;
-        $user->phone     = $request->phone;
-        $user->email     = $request->email;
+        $user->phone = $request->phone;
+        $user->email = $request->email;
+
+
         if ($user->save()) {
-            return redirect('users')->with('message', 'The user: ' . $user->fullname . ' was successfully edited!');
+            return redirect('users')->with('message', 'The user:  ' . $user->fullname . '  Was successfully edited!');
         }
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(User $user)
     {
-        if ($user->photo != 'null.webp') {
-            unlink(public_path('images/') . $user->photo);
+        if($user->photo != 'no-photo.png'){
+            unlink(public_path('images/').$user->photo);
         }
-        if ($user->delete()) {
-            return redirect('users')->with('message', 'The user: ' . $user->fullname . ' was successfully deleted!');
+        if($user->delete()){
+            return redirect('users')->with('message','The user: '.$user->fullname.'Was successfully deleted');
         }
     }
-
-    //Search by scope
     public function search(Request $request){
-        $users = User::names($request->q)->orderBy('id', 'desc')->paginate(20);
-        return view('users.search')->with('users', $users);
+        $users = User::names($request->q)->orderBy('id','desc')->paginate(20);
+        return view('users.search')->with('users',$users);
     }
 
     //export pdf
@@ -147,15 +146,14 @@ class UserController extends Controller
     }
 
     //Export Excel
-public function excel(){
+    public function excel(){
         return Excel::download(new UsersExport, 'allusers.xlsx');
     }
 
-    //Import excel
-public function import(Request $request){
+    // Import excel
+    public function import(Request $request){
         $file = $request->file('file');
         Excel::import(new UsersImport, $file);
         return redirect()->back()->with('message', 'Users imported successfull!');
     }
-
 }

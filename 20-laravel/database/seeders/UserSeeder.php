@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;     
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
 class UserSeeder extends Seeder
@@ -15,28 +15,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // ORM -> Eloquent
+        //ORM -> Eloquent
         $user = new User;
-        $user->document = 75000001;
-        $user->fullname = 'John Wick';
-        $user->gender = 'male';
+        $user->document  = 75000001;
+        $user->fullname  = 'Jhon Wick';
+        $user->gender    = 'Male';
         $user->birthdate = '1964-09-12';
-        $user->phone = '3100000001';
-        $user->email = 'johnw@gmail.com';
-        $user->password = bcrypt('admin');
-        $user->role = 'Administrador';
+        $user->phone     = '310000001';
+        $user->email     = 'jhonwick@gmail.com';
+        $user->password  = bcrypt('admin');
+        $user->role      = 'Administrador';
         $user->save();
 
-        //  Insert -> Array
+        // Insert ->Array
         DB::table('users')->insert([
-            'document' => 75000002,
+            'document' => 750000002,
             'fullname' => 'Lara Croft',
-            'gender' => 'female',
+            'gender' => 'Female',
             'birthdate' => '1992-02-14',
-            'phone' => '3100000002',
-            'email' => 'larac@gmail.com',
-            'password' => Hash::make('12345'),
-            'created_at' => now()
+            'phone' => '31200001',
+            'email' => 'lara@mail.com',
+            'password'=> Hash::make('12345'),
+            'created_at'=> now()
         ]);
     }
 }
