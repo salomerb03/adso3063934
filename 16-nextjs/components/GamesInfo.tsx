@@ -1,85 +1,95 @@
-import { PrismaClient } from '@prisma/client';
-import { PrismaNeon } from '@prisma/adapter-neon';
-import Image from 'next/image';
+import { PrismaClient } from "@prisma/client";
+import { PrismaNeon } from "@prisma/adapter-neon";
+import Image from "next/image";
+import Link from "next/link";
 
 const prisma = new PrismaClient({
     adapter: new PrismaNeon({
         connectionString: process.env.DATABASE_URL!,
-    })
-})
+    }),
+});
 
-export default async function GamesInfo() {
+type GamesInfoProps = {
+    searchParams?: Promise<{
+        page?: string;
+    }>;
+};
+
+export default async function GamesInfo({ searchParams }: GamesInfoProps) {
+    const params = await searchParams;
+    const currentPage = Number(params?.page) > 0 ? Number(params?.page) : 1;
+    const itemsPerPage = 10;
+
+    const totalGames = await prisma.game.count();
+    const totalPages = Math.ceil(totalGames / itemsPerPage);
+
     const games = await prisma.game.findMany({
         include: { console: true },
-    })
+        skip: (currentPage - 1) * itemsPerPage,
+        take: itemsPerPage,
+        orderBy: {
+            id: "asc",
+        },
+    });
 
     return (
-        <div className='w-full'>
-            <div className='mb-12'>
-                <h1 className='text-5xl font-bold text-white mb-2'>Games</h1>
-                <div className='h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded'></div>
+        <div>
+            <h1 className="text-4xl text-white-400 border-b-2 pb-2 mb-8">Games</h1>
+
+            <div className="flex flex-wrap gap-4 justify-center items-center">
+                {games.map((game) => (
+                    <div
+                        key={game.id}
+                        className="card bg-black-100 w-96 h-[420px] shadow-sm flex flex-col border-2 border-white-400"
+                    >
+                        <figure className="w-full h-60 relative">
+                            <Image
+                                src={`/imgs/${game.cover}`}
+                                alt={game.title}
+                                fill
+                                className="object-cover"
+                            />
+                        </figure>
+
+                        <div className="card-body flex flex-col justify-between bg-black/40 text-white">
+                            <h4 className="text-purple-400">US$ {game.price}</h4>
+                            <h2 className="card-title">{game.title}</h2>
+                            <h4 className="text-white/60">
+                                Disponible para {game.console.name}
+                            </h4>
+                            <h4 className="text-white/60">Genre: {game.genre}</h4>
+
+                            <div className="card-actions flex items-center gap-2">
+                                <div className="btn btn-outline btn-warning">Edit</div>
+                                <div className="btn btn-outline btn-info">View</div>
+                                <div className="btn btn-outline btn-error">Delete</div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-{games.map((game) => {
-    const rawCover = typeof game.cover === 'string' ? game.cover.trim() : '';
-    const coverSrc = rawCover
-        ? rawCover.startsWith('/') || rawCover.startsWith('http')
-            ? rawCover
-            : `/${rawCover}`
-        : '/imgs/no-cover.svg';
+            <div className="flex justify-center items-center gap-3 mt-8">
+                <Link
+                    href={`/games?page=${currentPage - 1}`}
+                    className={`btn btn-outline ${currentPage <= 1 ? "pointer-events-none opacity-50" : ""
+                        }`}
+                >
+                    Previous
+                </Link>
 
-    return (
-        <div
-            key={game.id}
-            className='group bg-gray-900 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer'
-        >
-            {/* Game Cover Image */}
-            <div className='relative h-64 bg-gray-800 overflow-hidden'>
-                <Image 
-                    src={coverSrc}
-                    alt={game.title}
-                    fill
-                    className='object-cover group-hover:scale-110 transition-transform duration-300'
-                />
-                <div className='absolute inset-0 bg-gradient-to-t from-black/80 to-transparent'></div>
-            </div>
+                <span className="text-white">
+                    Página {currentPage} de {totalPages}
+                </span>
 
-            {/* Game Info */}
-            <div className='p-4'>
-                <h3 className='text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-blue-400 transition-colors'>
-                    {game.title}
-                </h3>
-                
-                <div className='flex items-center gap-2 mb-3'>
-                    <span className='px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full'>
-                        {game.console.name}
-                    </span>
-                </div>
-
-                <p className='text-gray-400 text-sm mb-3 line-clamp-2'>
-                    {game.genre}
-                </p>
-
-                <div className='flex justify-between items-center'>
-                    <span className='text-green-400 font-bold text-lg'>
-                        ${game.price}
-                    </span>
-                    <span className='text-gray-500 text-xs'>
-                        {game.developer}
-                    </span>
-                </div>
+                <Link
+                    href={`/games?page=${currentPage + 1}`}
+                    className={`btn btn-outline ${currentPage >= totalPages ? "pointer-events-none opacity-50" : ""
+                        }`}
+                >
+                    Next
+                </Link>
             </div>
         </div>
-    )
-})}
-            </div>
-
-            {games.length === 0 && (
-                <div className='text-center py-12'>
-                    <p className='text-gray-400 text-xl'>No games found</p>
-                </div>
-            )}
-        </div>
-    )
+    );
 }
