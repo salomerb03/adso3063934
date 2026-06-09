@@ -1,0 +1,127 @@
+/* ============================================
+   THE WALKING DEAD — 04 RECUPERAR CONTRASEÑA
+   ============================================ */
+
+.recuperar {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../assets/img/fondo-login.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: local;
+}
+
+.recuperar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.78);
+  z-index: 0;
+}
+
+.recuperar > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- HEADER ---------- */
+.recuperar__header {
+  padding: var(--sp-md) var(--sp-lg) 0;
+}
+
+/* ---------- CUERPO ---------- */
+.recuperar__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--sp-sm) var(--sp-xl) var(--sp-xl);
+  gap: var(--sp-md);
+}
+
+/* Logo mano */
+.recuperar__logo {
+  width: clamp(70px, 20vw, 90px);
+  filter: drop-shadow(0 0 16px rgba(135,28,28,0.8));
+  margin-bottom: calc(var(--sp-xs) * -1);
+}
+
+/* Título */
+.recuperar__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  width: 100%;
+}
+
+.recuperar__title-wrapper::before,
+.recuperar__title-wrapper::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border));
+}
+
+.recuperar__title-wrapper::after {
+  background: linear-gradient(to left, transparent, var(--color-border));
+}
+
+.recuperar__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Imagen del sobre */
+.recuperar__sobre {
+  width: clamp(130px, 38%, 170px);
+  filter: drop-shadow(0 4px 20px rgba(0,0,0,0.9));
+}
+
+/* Descripción */
+.recuperar__description {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  color: var(--color-text-primary);
+  text-align: center;
+  line-height: 1.55;
+  max-width: 290px;
+}
+
+/* ---------- FORMULARIO ---------- */
+.recuperar__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  padding-bottom: var(--sp-lg);
+}
+
+.recuperar__form .btn-primary {
+  margin-top: var(--sp-xs);
+}
+
+/* Enlace volver */
+.recuperar__back-link {
+  text-align: center;
+  font-size: var(--fs-base);
+  color: var(--color-accent);
+  transition: color var(--transition);
+}
+
+.recuperar__back-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .recuperar { min-height: 100%; }
+}

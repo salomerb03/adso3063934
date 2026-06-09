@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Personajes</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/personajes.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="personajes">
+
+      <!-- HEADER -->
+      <header class="pj-header">
+        <h1 class="pj-title">PERSONAJES</h1>
+        <button class="pj-menu-btn" aria-label="Abrir menú" onclick="toggleMenu(true)">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </header>
+
+      <!-- DRAWER -->
+      <nav class="pj-drawer" id="pj-drawer" aria-label="Menú de navegación">
+        <div class="pj-drawer-header">
+          <span>Menú</span>
+          <button class="pj-drawer-close" aria-label="Cerrar menú" onclick="toggleMenu(false)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <ul class="pj-menu-list">
+          <li><a href="home.html" class="pj-menu-link">Home</a></li>
+          <li><a href="personajes.html" class="pj-menu-link active">Personajes</a></li>
+          <li><a href="temporadas.html" class="pj-menu-link">Temporadas</a></li>
+          <li><a href="tipos-zombies.html" class="pj-menu-link">Tipos Zombies</a></li>
+          <li><a href="#" class="pj-menu-link">Ubicaciones</a></li>
+        </ul>
+        <a href="bienvenida.html" class="pj-logout">Cerrar Sesión</a>
+      </nav>
+
+      <!-- SEARCH -->
+      <div class="pj-search-wrapper">
+        <i class="fa-solid fa-magnifying-glass pj-search-icon"></i>
+        <input type="search" class="pj-search" placeholder="Buscar personaje..." />
+      </div>
+
+      <!-- LIST -->
+      <ul class="pj-list" id="pj-list">
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--rick"></div>
+          <div class="pj-info">
+            <span class="pj-name">Rick Grimes</span>
+            <small class="pj-role">Líder · Grupo Original</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--daryl"></div>
+          <div class="pj-info">
+            <span class="pj-name">Daryl Dixon</span>
+            <small class="pj-role">Explorador · Grupo Original</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--michonne"></div>
+          <div class="pj-info">
+            <span class="pj-name">Michonne</span>
+            <small class="pj-role">Guerrera · Grupo Original</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--carl"></div>
+          <div class="pj-info">
+            <span class="pj-name">Carl Grimes</span>
+            <small class="pj-role">Miembro · Grupo Original</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--glenn"></div>
+          <div class="pj-info">
+            <span class="pj-name">Glenn Rhee</span>
+            <small class="pj-role">Explorador · Grupo Original</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--maggie"></div>
+          <div class="pj-info">
+            <span class="pj-name">Maggie Greene</span>
+            <small class="pj-role">Líder · Hilltop</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--negan"></div>
+          <div class="pj-info">
+            <span class="pj-name">Negan</span>
+            <small class="pj-role">Líder · Los Salvadores</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+        <li class="pj-item" onclick="location.href='personaje-detalle.html'">
+          <div class="pj-avatar pj-avatar--carol"></div>
+          <div class="pj-info">
+            <span class="pj-name">Carol Peletier</span>
+            <small class="pj-role">Guerrera · Grupo Original</small>
+          </div>
+          <i class="fa-solid fa-chevron-right pj-chevron"></i>
+        </li>
+      </ul>
+
+      <!-- FAB -->
+      <a href="personaje-crear.html" class="pj-fab" aria-label="Crear personaje">
+        <i class="fa-solid fa-plus"></i>
+      </a>
+
+    </main>
+  </div>
+
+  <script>
+    function toggleMenu(open) {
+      document.getElementById('pj-drawer').classList.toggle('open', open);
+    }
+    // Search filter
+    document.querySelector('.pj-search').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.pj-item').forEach(item => {
+        const name = item.querySelector('.pj-name').textContent.toLowerCase();
+        item.style.display = name.includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

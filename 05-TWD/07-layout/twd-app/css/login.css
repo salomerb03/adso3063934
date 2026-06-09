@@ -1,0 +1,152 @@
+/* ============================================
+   THE WALKING DEAD — 02 INICIAR SESIÓN
+   ============================================ */
+
+.login {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  /* Fondo grunge con manchas de sangre */
+  background-image: url('../assets/img/fondo-login.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: local;
+}
+
+/* Overlay oscuro general para legibilidad */
+.login::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.78);
+  z-index: 0;
+}
+
+/* Todo el contenido por encima del overlay */
+.login > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- HEADER: botón atrás ---------- */
+.login__header {
+  padding: var(--sp-lg) var(--sp-lg) 0;
+}
+
+/* ---------- CUERPO CENTRADO ---------- */
+.login__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--sp-sm) var(--sp-xl) var(--sp-xl);
+  gap: var(--sp-sm);
+}
+
+/* Logo mano sangrienta */
+.login__logo {
+  width: clamp(70px, 20vw, 90px);
+  filter: drop-shadow(0 0 16px rgba(135,28,28,0.7));
+}
+
+/* Título con líneas decorativas a los lados */
+.login__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  width: 100%;
+}
+
+.login__title-wrapper::before,
+.login__title-wrapper::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border));
+}
+
+.login__title-wrapper::after {
+  background: linear-gradient(to left, transparent, var(--color-border));
+}
+
+.login__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* ---------- FORMULARIO ---------- */
+.login__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+/* Enlace olvidé contraseña */
+.login__forgot {
+  text-align: center;
+  font-size: var(--fs-base);
+  color: var(--color-accent);
+  transition: color var(--transition);
+  margin-top: calc(var(--sp-xs) * -1);
+}
+
+.login__forgot:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+/* ---------- SEPARADOR ---------- */
+.login__divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  width: 100%;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-base);
+}
+
+.login__divider::before,
+.login__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ---------- REGISTRARSE ---------- */
+.login__register {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.login__register-text {
+  font-size: var(--fs-base);
+  color: var(--color-text-secondary);
+}
+
+/* ---------- TOGGLE CONTRASEÑA ---------- */
+.toggle-password {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .login {
+    min-height: 100%;
+  }
+}

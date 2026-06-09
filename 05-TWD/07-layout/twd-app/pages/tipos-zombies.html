@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Caminantes</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/tipos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="tipos">
+
+      <header class="tipos__header">
+        <h1 class="tipos__title">CAMINANTES</h1>
+        <button class="tipos__menu-btn" aria-label="Abrir menú" onclick="toggleMenu(true)">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </header>
+
+      <nav class="tipos__drawer" id="tipos-drawer">
+        <div class="tipos__drawer-header">
+          <span>Menú</span>
+          <button class="tipos__drawer-close" onclick="toggleMenu(false)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="tipos__menu-list">
+          <li><a href="home.html" class="tipos__menu-link">Home</a></li>
+          <li><a href="personajes.html" class="tipos__menu-link">Personajes</a></li>
+          <li><a href="temporadas.html" class="tipos__menu-link">Temporadas</a></li>
+          <li><a href="tipos-zombies.html" class="tipos__menu-link active">Tipos Zombies</a></li>
+          <li><a href="#" class="tipos__menu-link">Ubicaciones</a></li>
+        </ul>
+        <a href="bienvenida.html" class="tipos__logout">Cerrar Sesión</a>
+      </nav>
+
+      <div class="tipos__search-wrapper">
+        <i class="fa-solid fa-magnifying-glass tipos__search-icon"></i>
+        <input type="search" class="tipos__search" placeholder="Buscar tipo..." />
+      </div>
+
+      <ul class="tipos__list" id="tipos-list">
+
+        <li class="tipos__item" onclick="location.href='tipo-detalle.html'">
+          <div class="tipos__thumb tipos__thumb--horda"></div>
+          <div class="tipos__info">
+            <span class="tipos__name">Caminante común</span>
+            <small class="tipos__meta">Nivel 1 · Lento y Torpe</small>
+          </div>
+          <i class="fa-solid fa-chevron-right tipos__chevron"></i>
+        </li>
+
+        <li class="tipos__item" onclick="location.href='tipo-detalle.html'">
+          <div class="tipos__thumb tipos__thumb--mutante"></div>
+          <div class="tipos__info">
+            <span class="tipos__name">Caminante de Turba</span>
+            <small class="tipos__meta">Nivel 2 · Peligroso en grupo</small>
+          </div>
+          <i class="fa-solid fa-chevron-right tipos__chevron"></i>
+        </li>
+
+        <li class="tipos__item" onclick="location.href='tipo-detalle.html'">
+          <div class="tipos__thumb tipos__thumb--corredor"></div>
+          <div class="tipos__info">
+            <span class="tipos__name">Caminante corredor</span>
+            <small class="tipos__meta">Nivel 1 · Lento y Torpe</small>
+          </div>
+          <i class="fa-solid fa-chevron-right tipos__chevron"></i>
+        </li>
+
+        <li class="tipos__item" onclick="location.href='tipo-detalle.html'">
+          <div class="tipos__thumb tipos__thumb--susurrador"></div>
+          <div class="tipos__info">
+            <span class="tipos__name">Susurrador</span>
+            <small class="tipos__meta">Nivel 3 · Humano Disfrazado</small>
+          </div>
+          <i class="fa-solid fa-chevron-right tipos__chevron"></i>
+        </li>
+
+        <li class="tipos__item" onclick="location.href='tipo-detalle.html'">
+          <div class="tipos__thumb tipos__thumb--gigante"></div>
+          <div class="tipos__info">
+            <span class="tipos__name">Caminante gigante</span>
+            <small class="tipos__meta">Nivel 3 · Alta amenaza</small>
+          </div>
+          <i class="fa-solid fa-chevron-right tipos__chevron"></i>
+        </li>
+
+      </ul>
+
+      <a href="tipo-crear.html" class="tipos__fab" aria-label="Crear tipo">
+        <i class="fa-solid fa-plus"></i>
+      </a>
+
+    </main>
+  </div>
+  <script>
+    function toggleMenu(open) {
+      document.getElementById('tipos-drawer').classList.toggle('open', open);
+    }
+    document.querySelector('.tipos__search').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.tipos__item').forEach(item => {
+        const t = item.querySelector('.tipos__name').textContent.toLowerCase()
+                + item.querySelector('.tipos__meta').textContent.toLowerCase();
+        item.style.display = t.includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

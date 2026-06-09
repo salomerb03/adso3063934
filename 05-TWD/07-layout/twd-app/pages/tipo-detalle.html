@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Detalle Tipo</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/tipos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="tipo-detalle">
+
+      <div class="tipo-detalle__hero">
+        <div class="tipo-detalle__hero-img tipo-detalle__hero-img--horda"></div>
+        <div class="tipo-detalle__hero-overlay"></div>
+        <a href="tipos-zombies.html" class="tpd-back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div class="tipo-detalle__hero-name">
+          <h1>CAMINANTE EN HORDA</h1>
+        </div>
+      </div>
+
+      <div class="tipo-detalle__content">
+
+        <!-- Nivel de peligro -->
+        <div class="tpd-danger-block">
+          <span class="tpd-danger-label">NIVEL DE PELIGRO</span>
+          <div class="tpd-danger-bar">
+            <div class="tpd-danger-fill tpd-danger-fill--2"></div>
+          </div>
+          <div class="tpd-danger-dots">
+            <span class="tpd-dot tpd-dot--green active"></span>
+            <span class="tpd-dot tpd-dot--yellow active"></span>
+            <span class="tpd-dot tpd-dot--red"></span>
+          </div>
+          <div class="tpd-danger-labels">
+            <span>1</span><span>2</span><span>3</span>
+          </div>
+        </div>
+
+        <div class="tpd-section">
+          <h3 class="tpd-section-title">DESCRIPCIÓN</h3>
+          <p class="tpd-desc">
+            Los caminantes en horda representan la amenaza colectiva más común del apocalipsis.
+            Aunque individualmente lentos y predecibles, en grupo son devastadores. Se guían por
+            el sonido y el olfato, y una vez que el grupo se pone en marcha, es casi imposible
+            detenerlos sin recursos masivos o una distracción efectiva.
+          </p>
+        </div>
+
+        <div class="tpd-section">
+          <h3 class="tpd-section-title">DEBILIDAD</h3>
+          <p class="tpd-desc">Destrucción del cerebro. Fuego. Trampas de sonido.</p>
+        </div>
+
+        <div class="tpd-actions">
+          <a href="tipo-editar.html" class="tpd-action-btn tpd-action-btn--edit"><i class="fa-solid fa-pen"></i></a>
+          <a href="tipo-eliminar.html" class="tpd-action-btn tpd-action-btn--delete"><i class="fa-solid fa-trash"></i></a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

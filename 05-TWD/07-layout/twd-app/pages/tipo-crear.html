@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Nuevo Tipo</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/tipos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="tipo-form">
+
+      <header class="tipo-form__header">
+        <a href="tipos-zombies.html" class="btn-back-tp"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2 class="tipo-form__title">NUEVO TIPO</h2>
+      </header>
+
+      <div class="tipo-form__avatar-wrapper">
+        <div class="tipo-form__avatar-placeholder">
+          <i class="fa-solid fa-camera"></i>
+          <span>Agregar imagen</span>
+        </div>
+      </div>
+
+      <div class="tipo-form__fields">
+
+        <div class="tpf-field">
+          <label>Nombre</label>
+          <div class="tpf-input-wrap">
+            <i class="fa-solid fa-skull tpf-icon"></i>
+            <input type="text" placeholder="Ingresa el nombre" />
+          </div>
+        </div>
+
+        <div class="tpf-field">
+          <label>Nivel de peligro</label>
+          <div class="tpf-select-wrap">
+            <select>
+              <option value="" disabled selected>Seleccionar Nivel</option>
+              <option value="1">Nivel 1 — Bajo</option>
+              <option value="2">Nivel 2 — Medio</option>
+              <option value="3">Nivel 3 — Alto</option>
+            </select>
+            <i class="fa-solid fa-chevron-down tpf-select-arrow"></i>
+          </div>
+        </div>
+
+        <!-- Danger dots selector -->
+        <div class="tpf-field">
+          <div class="tpf-danger-dots" id="danger-dots">
+            <button type="button" class="tpf-dot tpf-dot--green" data-level="1" onclick="setLevel(1)"></button>
+            <button type="button" class="tpf-dot tpf-dot--yellow" data-level="2" onclick="setLevel(2)"></button>
+            <button type="button" class="tpf-dot tpf-dot--red" data-level="3" onclick="setLevel(3)"></button>
+          </div>
+          <div class="tpf-danger-nums">
+            <span>1</span><span>2</span><span>3</span>
+          </div>
+        </div>
+
+        <div class="tpf-field">
+          <label>Descripción</label>
+          <textarea class="tpf-textarea" placeholder="Descripción" rows="3"></textarea>
+        </div>
+
+        <div class="tpf-field">
+          <label>Debilidad</label>
+          <div class="tpf-input-wrap">
+            <i class="fa-solid fa-bolt tpf-icon"></i>
+            <input type="text" placeholder="Ingresa el nombre" />
+          </div>
+        </div>
+
+      </div>
+
+      <div class="tipo-form__footer">
+        <a href="tipos-zombies.html" class="btn-primary">GUARDAR</a>
+      </div>
+
+    </main>
+  </div>
+  <script>
+    function setLevel(level) {
+      document.querySelectorAll('.tpf-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i < level);
+      });
+    }
+  </script>
+</body>
+</html>

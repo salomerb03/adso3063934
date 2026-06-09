@@ -1,0 +1,139 @@
+/* ============================================
+   THE WALKING DEAD — 03 REGISTRO
+   ============================================ */
+
+.registro {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../assets/img/fondo-login.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: local;
+}
+
+.registro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.78);
+  z-index: 0;
+}
+
+.registro > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- HEADER ---------- */
+.registro__header {
+  padding: var(--sp-md) var(--sp-lg) 0;
+}
+
+/* ---------- CUERPO ---------- */
+.registro__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--sp-sm) var(--sp-xl) var(--sp-xl);
+  gap: var(--sp-md);
+}
+
+/* Logo mano — más protagonismo */
+.registro__logo {
+  width: clamp(70px, 20vw, 90px);
+  filter: drop-shadow(0 0 16px rgba(135,28,28,0.8));
+  margin-bottom: calc(var(--sp-xs) * -1);
+}
+
+/* Título */
+.registro__title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  width: 100%;
+}
+
+.registro__title-wrapper::before,
+.registro__title-wrapper::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border));
+}
+
+.registro__title-wrapper::after {
+  background: linear-gradient(to left, transparent, var(--color-border));
+}
+
+.registro__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-2xl);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* ---------- FORMULARIO ---------- */
+.registro__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+/* Botón con margen inferior para no pegarse al borde */
+.registro__form .btn-primary {
+  margin-top: var(--sp-sm);
+  margin-bottom: var(--sp-xs);
+}
+
+/* ---------- PIE ---------- */
+.registro__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding-bottom: var(--sp-lg);
+  width: 100%;
+}
+
+.registro__footer-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  width: 100%;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.registro__footer-divider::before,
+.registro__footer-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.registro__login-link {
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  transition: color var(--transition);
+}
+
+.registro__login-link:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .registro { min-height: 100%; }
+}

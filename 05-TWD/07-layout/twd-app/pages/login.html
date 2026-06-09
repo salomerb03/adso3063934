@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Iniciar Sesión</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/login.css" />
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="phone-frame">
+    <main class="login">
+
+      <!-- header -->
+      <header class="login__header">
+        <a href="bienvenida.html" class="btn-back" aria-label="Volver">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </header>
+
+      <!-- cuerpo -->
+      <section class="login__body">
+
+        <!-- Logo mano -->
+        <img
+          class="login__logo"
+          src="../assets/img/logo-mano.png"
+          alt="Logo"
+        />
+
+        <!-- Título decorado -->
+        <div class="login__title-wrapper">
+          <h1 class="login__title">Iniciar Sesión</h1>
+        </div>
+
+        <!-- Formulario -->
+        <form class="login__form" novalidate onsubmit="goToHome(event)">
+
+          <!-- Usuario o email -->
+          <div class="input-group">
+            <label for="usuario">Usuario o Email</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                placeholder="Ingresa tu usuario o email"
+                autocomplete="username"
+              />
+            </div>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="input-group">
+            <label for="contrasena">Contraseña</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input
+                type="password"
+                id="contrasena"
+                name="contrasena"
+                placeholder="Ingresa tu contraseña"
+                autocomplete="current-password"
+              />
+              <button
+                type="button"
+                class="input-icon-right toggle-password"
+                aria-label="Mostrar contraseña"
+                onclick="togglePassword('contrasena', this)"
+              >
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón principal -->
+          <button type="submit" class="btn-primary" style="margin-top: var(--sp-xs);">
+            Iniciar Sesión
+          </button>
+
+          <!-- Olvidé contraseña -->
+          <a href="recuperar.html" class="login__forgot">¿Olvidaste tu contraseña?</a>
+
+        </form>
+
+        <!-- Separador -->
+        <div class="login__divider">
+          <span>✕</span>
+        </div>
+
+        <!-- Registro -->
+        <div class="login__register">
+          <p class="login__register-text">¿No tienes una cuenta?</p>
+          <a href="registro.html" class="btn-outline">Registrarme</a>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function togglePassword(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon  = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      } else {
+        input.type = 'password';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      }
+    }
+
+    function goToHome(event) {
+      event.preventDefault();
+      window.location.href = 'home.html';
+    }
+  </script>
+
+</body>
+</html>

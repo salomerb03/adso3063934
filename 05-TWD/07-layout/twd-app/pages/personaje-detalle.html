@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Detalle Personaje</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/personajes.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="detalle">
+
+      <!-- HERO IMAGE -->
+      <div class="detalle__hero">
+        <div class="detalle__hero-img detalle__hero-img--rick"></div>
+        <div class="detalle__hero-overlay"></div>
+        <a href="personajes.html" class="detalle__back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+        <div class="detalle__hero-name">
+          <h1>Rick Grimes</h1>
+          <p>Líder · Grupo Original</p>
+        </div>
+      </div>
+
+      <!-- INFO CONTENT -->
+      <div class="detalle__content">
+
+        <!-- META CHIPS -->
+        <div class="detalle__chips">
+          <span class="detalle__chip">
+            <i class="fa-solid fa-calendar"></i> TEMP. APARICIÓN
+          </span>
+          <span class="detalle__chip detalle__chip--value">1</span>
+        </div>
+        <div class="detalle__chips">
+          <span class="detalle__chip">
+            <i class="fa-solid fa-circle-dot"></i> ESTADO
+          </span>
+          <span class="detalle__chip detalle__chip--alive">Vivo</span>
+        </div>
+        <div class="detalle__chips">
+          <span class="detalle__chip">
+            <i class="fa-solid fa-location-dot"></i> UBICACIÓN
+          </span>
+          <span class="detalle__chip detalle__chip--value">Alexandria</span>
+        </div>
+        <div class="detalle__chips">
+          <span class="detalle__chip">
+            <i class="fa-solid fa-users"></i> GRUPO
+          </span>
+          <span class="detalle__chip detalle__chip--value">Grupo Original</span>
+        </div>
+
+        <!-- DESCRIPCION -->
+        <div class="detalle__section">
+          <h3 class="detalle__section-title">DESCRIPCIÓN</h3>
+          <p class="detalle__desc">
+            Ex oficial de policía del condado de King, Rick Grimes despertó de un coma para
+            encontrar el mundo destruido por una plaga de caminantes. Se convirtió en el
+            líder del grupo de supervivientes y los guió hacia la seguridad a través de
+            innumerables peligros.
+          </p>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="detalle__actions">
+          <a href="personaje-editar.html" class="detalle__action-btn detalle__action-btn--edit" aria-label="Editar">
+            <i class="fa-solid fa-pen"></i>
+          </a>
+          <a href="personaje-eliminar.html" class="detalle__action-btn detalle__action-btn--delete" aria-label="Eliminar">
+            <i class="fa-solid fa-trash"></i>
+          </a>
+        </div>
+
+      </div>
+    </main>
+  </div>
+</body>
+</html>

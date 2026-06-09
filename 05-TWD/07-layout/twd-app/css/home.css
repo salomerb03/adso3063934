@@ -1,0 +1,426 @@
+/* ============================================
+   THE WALKING DEAD — HOME / DASHBOARD
+   ============================================ */
+
+.home {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+  padding: var(--sp-xs) var(--sp-lg);
+  color: var(--color-text-primary);
+  background-image: url('../assets/img/fondo-login.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: local;
+}
+
+.home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 12, 0.78);
+  z-index: 0;
+}
+
+.home > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--sp-lg);
+  height: 64px;
+  z-index: 10;
+}
+
+.home__logo {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  transform: translateX(-50%);
+  z-index: 12;
+  max-height: 96px;
+  display: block;
+  opacity: 1;
+  filter: brightness(1.1) contrast(1.1) drop-shadow(0 8px 20px rgba(0,0,0,0.75));
+  background: rgba(0,0,0,0.14);
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.home__hero-copy {
+  position: absolute;
+  bottom: calc(var(--sp-sm) + 4px);
+  left: var(--sp-lg);
+  right: var(--sp-lg);
+  color: #fff;
+  z-index: 2;
+  padding: var(--sp-sm) var(--sp-sm) calc(var(--sp-sm) + 6px) var(--sp-sm);
+}
+.home__hero-copy span {
+  display: block;
+  margin-bottom: var(--sp-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.home__hero-copy h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  line-height: 1.02;
+  margin: 0;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.75);
+}
+
+.home__menu-btn {
+  position: absolute;
+  right: var(--sp-lg);
+  top: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: transform var(--transition), background-color var(--transition);
+  z-index: 11;
+}
+
+.home__menu-btn:hover {
+  background: rgba(135,28,28,0.16);
+  transform: translateY(-50%) translateY(-1px);
+}
+
+.home__drawer {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  padding: var(--sp-xl) var(--sp-lg);
+  background: rgba(12,12,13,0.96);
+  backdrop-filter: blur(18px);
+  border-radius: 28px;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.24s ease, opacity 0.24s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+}
+
+.menu-open .home__drawer {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.home__drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2xl);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-md);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home__drawer-close {
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-primary);
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+}
+
+.home__menu-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  flex: 1 1 auto;
+}
+
+.home__menu-link {
+  display: block;
+  padding: var(--sp-md) var(--sp-lg);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  background: rgba(255,255,255,0.04);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.home__menu-link:hover,
+.home__menu-link.active {
+  background: rgba(135,28,28,0.32);
+  color: #fff;
+}
+
+.home__logout {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: var(--sp-md) var(--sp-lg);
+  border-radius: 20px;
+  background: rgba(135,28,28,0.12);
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  margin-top: auto;
+}
+
+.home__top-card {
+  position: relative;
+  margin-top: var(--sp-sm);
+}
+
+.home__top-card {
+  position: relative;
+  margin-top: 0;
+}
+.home__hero-card {
+  position: relative;
+  min-height: 260px;
+  border-radius: 30px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.12) 28%, rgba(0,0,0,0.55) 100%),
+    url('../assets/img/fondo-twd.png') center/cover no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 18px 40px rgba(0,0,0,0.35);
+}
+
+@media (min-width: 768px) {
+  .home__header { height: 88px; }
+  .home__logo { max-height: 140px; top: 12px; }
+}
+
+
+.home__hero-copy span {
+  display: block;
+  margin-bottom: var(--sp-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home__hero-copy h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.home__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: minmax(140px, auto);
+  gap: var(--sp-sm);
+  margin-top: var(--sp-lg);
+}
+
+.home__stat-card {
+  padding: var(--sp-md);
+  min-height: 120px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  backdrop-filter: blur(2px);
+}
+
+.home__stat-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(135,28,28,0.18);
+  color: var(--color-accent);
+  font-size: 1.1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35) inset;
+}
+
+.home__stat-card strong {
+  font-size: 2.1rem;
+  line-height: 1;
+  margin-top: 4px;
+}
+
+.home__stat-card p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  opacity: 0.95;
+}
+
+.home__location-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-sm);
+  padding: var(--sp-md) var(--sp-lg);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  margin-top: var(--sp-md);
+  min-height: 70px;
+}
+
+.home__location-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-right: var(--sp-sm);
+  border-radius: 10px;
+  background: rgba(135,28,28,0.16);
+  color: var(--color-accent);
+}
+
+.home__featured {
+  display: grid;
+  gap: var(--sp-lg);
+}
+
+.home__featured-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+}
+
+.home__featured-header h2 {
+  font-family: var(--font-heading);
+  font-size: var(--fs-xl);
+}
+
+.home__featured-header a {
+  color: var(--color-accent);
+  font-size: var(--fs-sm);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.home__featured-grid {
+  display: flex;
+  gap: var(--sp-sm);
+  overflow-x: auto;
+  padding-bottom: var(--sp-sm);
+  margin-top: var(--sp-sm);
+}
+
+.home__featured-grid::-webkit-scrollbar { display: none; }
+
+.home__character-card {
+  flex: 0 0 110px;
+  width: 110px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-right: 8px;
+  z-index: 0;
+}
+
+.home__character-avatar {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(180deg, rgba(13,13,15,0.2), rgba(13,13,15,0.8)),
+    url('../assets/img/fondo-twd.png') center/cover no-repeat;
+  background-size: cover;
+}
+
+.home__avatar-rick { background-color: rgba(135,28,28,0.3); }
+.home__avatar-daryl { background-color: rgba(22,25,28,0.5); }
+.home__avatar-michonne { background-color: rgba(38,18,25,0.48); }
+.home__avatar-carl { background-color: rgba(16,16,18,0.55); }
+
+.home__character-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sp-xs);
+  padding: var(--sp-sm);
+}
+
+.home__character-details span {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  padding: 6px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+.status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status--alive {
+  color: #7ad976;
+  background: rgba(122,217,118,0.12);
+}
+
+.status--alive::before {
+  background: #7ad976;
+}
+
+.status--dead {
+  color: #e66b6b;
+  background: rgba(230,107,107,0.12);
+}
+
+.status--dead::before {
+  background: #e66b6b;
+}
+
+@media (min-width: 768px) {
+  .home {
+    padding: var(--sp-xl);
+  }
+
+  .home__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home__featured-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

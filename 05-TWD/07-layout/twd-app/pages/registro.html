@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Crear Cuenta</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/registro.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <div class="phone-frame">
+    <main class="registro">
+
+      <!-- header -->
+      <header class="registro__header">
+        <a href="bienvenida.html" class="btn-back" aria-label="Volver">
+          <i class="fa-solid fa-arrow-left"></i>
+        </a>
+      </header>
+
+      <!-- cuerpo -->
+      <section class="registro__body">
+
+        <!-- Logo mano -->
+        <img
+          class="registro__logo"
+          src="../assets/img/logo-mano.png"
+          alt="Logo"
+        />
+
+        <!-- Título -->
+        <div class="registro__title-wrapper">
+          <h1 class="registro__title">Crear Cuenta</h1>
+        </div>
+
+        <!-- Formulario -->
+        <form class="registro__form" novalidate onsubmit="goToHome(event)">
+
+          <!-- Nombre completo -->
+          <div class="input-group">
+            <label for="nombre">Nombre Completo</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder="Ingresa tu nombre"
+                autocomplete="name"
+              />
+            </div>
+          </div>
+
+          <!-- Nombre de usuario -->
+          <div class="input-group">
+            <label for="usuario">Nombre de Usuario</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                placeholder="Ingresa tu usuario"
+                autocomplete="username"
+              />
+            </div>
+          </div>
+
+          <!-- Correo electrónico -->
+          <div class="input-group">
+            <label for="email">Correo Electrónico</label>
+            <div class="input-wrapper">
+              <i class="fa-regular fa-user input-icon"></i>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ingresa tu email"
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <!-- Contraseña -->
+          <div class="input-group">
+            <label for="contrasena">Contraseña</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input
+                type="password"
+                id="contrasena"
+                name="contrasena"
+                placeholder="Ingresa tu contraseña"
+                autocomplete="new-password"
+              />
+              <button
+                type="button"
+                class="input-icon-right toggle-password"
+                aria-label="Mostrar contraseña"
+                onclick="togglePassword('contrasena', this)"
+              >
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Confirmar contraseña -->
+          <div class="input-group">
+            <label for="confirmar">Confirmar Contraseña</label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-lock input-icon"></i>
+              <input
+                type="password"
+                id="confirmar"
+                name="confirmar"
+                placeholder="Confirma tu contraseña"
+                autocomplete="new-password"
+              />
+              <button
+                type="button"
+                class="input-icon-right toggle-password"
+                aria-label="Mostrar contraseña"
+                onclick="togglePassword('confirmar', this)"
+              >
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón registrar -->
+          <button type="submit" class="btn-primary" style="margin-top: var(--sp-xs);">
+            Registrarme
+          </button>
+
+        </form>
+
+        <!-- Pie -->
+        <div class="registro__footer">
+          <div class="registro__footer-divider">
+            <span>¿Ya tienes cuenta?</span>
+          </div>
+          <a href="login.html" class="registro__login-link">Iniciar Sesión</a>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function togglePassword(inputId, btn) {
+      const input = document.getElementById(inputId);
+      const icon  = btn.querySelector('i');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      } else {
+        input.type = 'password';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      }
+    }
+
+    function goToHome(event) {
+      event.preventDefault();
+      window.location.href = 'home.html';
+    }
+  </script>
+
+</body>
+</html>

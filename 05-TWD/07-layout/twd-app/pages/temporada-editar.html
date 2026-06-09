@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Editar Temporada</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/temporadas.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="temp-form">
+
+      <header class="temp-form__header">
+        <a href="temporada-detalle.html" class="btn-back-t"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2 class="temp-form__title">EDITAR TEMPORADA</h2>
+      </header>
+
+      <div class="temp-form__avatar-wrapper">
+        <div class="temp-form__avatar temp-form__avatar--7">
+          <button class="temp-form__avatar-edit" aria-label="Cambiar foto">
+            <i class="fa-solid fa-camera"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="temp-form__fields">
+
+        <div class="tf-field">
+          <label>Número</label>
+          <div class="tf-input-wrap">
+            <i class="fa-solid fa-hashtag tf-icon"></i>
+            <input type="number" value="7" />
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Título</label>
+          <div class="tf-input-wrap">
+            <i class="fa-solid fa-heading tf-icon"></i>
+            <input type="text" value="Negan" />
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Año</label>
+          <div class="tf-input-wrap">
+            <i class="fa-solid fa-calendar tf-icon"></i>
+            <input type="number" value="2016" />
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Episodios</label>
+          <div class="tf-input-wrap">
+            <i class="fa-solid fa-clapperboard tf-icon"></i>
+            <input type="number" value="16" />
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Protagonista</label>
+          <div class="tf-input-wrap">
+            <i class="fa-solid fa-user tf-icon"></i>
+            <input type="text" value="Alexandria" />
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Descripción</label>
+          <textarea class="tf-textarea" rows="4">Líder del grupo. Ex oficial de policía. Negan llega con brutalidad sin precedentes, obligando a los supervivientes a someterse al yugo de los Salvadores.</textarea>
+        </div>
+
+      </div>
+
+      <div class="temp-form__footer">
+        <a href="temporada-detalle.html" class="btn-primary">GUARDAR</a>
+      </div>
+
+    </main>
+  </div>
+</body>
+</html>

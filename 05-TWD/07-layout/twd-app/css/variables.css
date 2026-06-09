@@ -1,0 +1,287 @@
+/* ============================================
+   THE WALKING DEAD — VARIABLES & RESET GLOBAL
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&family=Didact+Gothic&display=swap');
+
+/* ---------- CUSTOM PROPERTIES ---------- */
+:root {
+  /* Colors */
+  --color-bg-primary:     #0D0D0F;
+  --color-bg-secondary:   #1A1A1D;
+  --color-border:         #2B2B30;
+  --color-accent:         #871C1C;
+  --color-accent-hover:   #a52222;
+  --color-text-secondary: #A699A4;
+  --color-text-primary:   #FFFFFF;
+
+  /* Typography */
+  --font-heading: 'Pathway Gothic One', sans-serif;
+  --font-body:    'Didact Gothic', sans-serif;
+
+  /* Font sizes — fluid scale */
+  --fs-xs:   clamp(0.7rem,  1.5vw, 0.8rem);
+  --fs-sm:   clamp(0.8rem,  2vw,   0.9rem);
+  --fs-base: clamp(0.9rem,  2.5vw, 1rem);
+  --fs-md:   clamp(1rem,    3vw,   1.15rem);
+  --fs-lg:   clamp(1.1rem,  3.5vw, 1.4rem);
+  --fs-xl:   clamp(1.4rem,  4vw,   1.8rem);
+  --fs-2xl:  clamp(1.8rem,  5vw,   2.4rem);
+
+  /* Spacing */
+  --sp-xs:  4px;
+  --sp-sm:  8px;
+  --sp-md:  16px;
+  --sp-lg:  24px;
+  --sp-xl:  32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+
+  /* Borders */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* Mobile frame (diseño base 390px) */
+  --mobile-max: 430px;
+
+  /* Shadows */
+  --shadow-red:  0 0 20px rgba(135, 28, 28, 0.4);
+  --shadow-dark: 0 4px 24px rgba(0, 0, 0, 0.6);
+
+  /* Transitions */
+  --transition: 0.25s ease;
+}
+
+/* ---------- RESET ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: var(--font-heading);
+}
+
+input {
+  font-family: var(--font-body);
+  outline: none;
+}
+
+/* ---------- UTILITIES ---------- */
+
+/* Contenedor centrado tipo "phone frame" en desktop */
+.phone-frame {
+  width: 100%;
+  max-width: var(--mobile-max);
+  min-height: 100vh;
+  margin: 0 auto;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* En desktop: mostrar el frame como tarjeta centrada */
+@media (min-width: 768px) {
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #080808;
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(135,28,28,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 80% 50%, rgba(135,28,28,0.08) 0%, transparent 55%);
+    padding: var(--sp-xl) var(--sp-md);
+    min-height: 100vh;
+  }
+
+  .phone-frame {
+    min-height: auto;
+    height: 92vh;
+    max-height: 880px;
+    border-radius: 44px;
+    box-shadow:
+      0 0 0 1px rgba(135,28,28,0.3),
+      0 0 80px rgba(0,0,0,0.9),
+      0 0 40px rgba(135,28,28,0.25);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+  }
+
+  .phone-frame::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Divider decorativo con líneas y símbolo central */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Botón primario rojo */
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: var(--sp-md) var(--sp-lg);
+  background-color: var(--color-accent);
+  color: var(--color-text-primary);
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-hover);
+  box-shadow: var(--shadow-red);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Botón outline rojo */
+.btn-outline {
+  display: block;
+  width: 100%;
+  padding: var(--sp-md) var(--sp-lg);
+  background-color: transparent;
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  border: 1.5px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+}
+
+.btn-outline:hover {
+  background-color: rgba(135,28,28,0.15);
+  box-shadow: var(--shadow-red);
+}
+
+/* Input base */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-xs);
+}
+
+.input-group label {
+  font-family: var(--font-heading);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.12em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper .input-icon {
+  position: absolute;
+  left: var(--sp-md);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-md);
+  pointer-events: none;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: var(--sp-md) var(--sp-md) var(--sp-md) calc(var(--sp-md) * 2 + 18px);
+  background-color: transparent;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-size: var(--fs-base);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.input-wrapper input::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.85;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(135,28,28,0.2);
+}
+
+.input-wrapper .input-icon-right {
+  position: absolute;
+  right: var(--sp-md);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: var(--fs-md);
+  transition: color var(--transition);
+}
+
+.input-wrapper .input-icon-right:hover {
+  color: var(--color-text-primary);
+}
+
+/* Back button */
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-text-primary);
+  font-size: var(--fs-lg);
+  transition: color var(--transition);
+}
+
+.btn-back:hover {
+  color: var(--color-accent);
+}

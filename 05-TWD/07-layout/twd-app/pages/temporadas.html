@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Temporadas</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/temporadas.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="temps">
+
+      <header class="temps__header">
+        <h1 class="temps__title">TEMPORADAS</h1>
+        <button class="temps__menu-btn" aria-label="Abrir menú" onclick="toggleMenu(true)">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </header>
+
+      <nav class="temps__drawer" id="temps-drawer">
+        <div class="temps__drawer-header">
+          <span>Menú</span>
+          <button class="temps__drawer-close" onclick="toggleMenu(false)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="temps__menu-list">
+          <li><a href="home.html" class="temps__menu-link">Home</a></li>
+          <li><a href="personajes.html" class="temps__menu-link">Personajes</a></li>
+          <li><a href="temporadas.html" class="temps__menu-link active">Temporadas</a></li>
+          <li><a href="tipos-zombies.html" class="temps__menu-link">Tipos Zombies</a></li>
+          <li><a href="ubicaciones.html" class="temps__menu-link">Ubicaciones</a></li>
+        </ul>
+        <a href="bienvenida.html" class="temps__logout">Cerrar Sesión</a>
+      </nav>
+
+      <div class="temps__search-wrapper">
+        <i class="fa-solid fa-magnifying-glass temps__search-icon"></i>
+        <input type="search" class="temps__search" placeholder="Buscar temporada..." />
+      </div>
+
+      <ul class="temps__list" id="temps-list">
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--1"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 1</span>
+            <small class="temps__meta">Rick Grimes · 2010 · 6 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--2"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 2</span>
+            <small class="temps__meta">La Granja Greene · 2011 · 13 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--3"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 3</span>
+            <small class="temps__meta">La Prisión · 2012 · 16 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--4"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 4</span>
+            <small class="temps__meta">Caída de la Prisión · 2013 · 16 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--5"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 5</span>
+            <small class="temps__meta">Terminus · 2014 · 16 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--6"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 6</span>
+            <small class="temps__meta">Alexandria · 2015 · 16 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--7"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 7</span>
+            <small class="temps__meta">Negan · 2016 · 16 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+        <li class="temps__item" onclick="location.href='temporada-detalle.html'">
+          <div class="temps__thumb temps__thumb--8"></div>
+          <div class="temps__info">
+            <span class="temps__name">Temp. 8</span>
+            <small class="temps__meta">All Out War · 2017 · 16 Episodios</small>
+          </div>
+          <i class="fa-solid fa-chevron-right temps__chevron"></i>
+        </li>
+
+      </ul>
+
+      <a href="temporada-crear.html" class="temps__fab" aria-label="Crear temporada">
+        <i class="fa-solid fa-plus"></i>
+      </a>
+
+    </main>
+  </div>
+  <script>
+    function toggleMenu(open) {
+      document.getElementById('temps-drawer').classList.toggle('open', open);
+    }
+    document.querySelector('.temps__search').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.temps__item').forEach(item => {
+        const name = item.querySelector('.temps__name').textContent.toLowerCase();
+        const meta = item.querySelector('.temps__meta').textContent.toLowerCase();
+        item.style.display = (name + meta).includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

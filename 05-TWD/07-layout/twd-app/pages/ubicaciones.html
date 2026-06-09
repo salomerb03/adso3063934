@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Ubicaciones</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/ubicaciones.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="ubics">
+
+      <header class="ubics__header">
+        <h1 class="ubics__title">UBICACIONES</h1>
+        <button class="ubics__menu-btn" aria-label="Abrir menú" onclick="toggleMenu(true)">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </header>
+
+      <nav class="ubics__drawer" id="ubics-drawer">
+        <div class="ubics__drawer-header">
+          <span>Menú</span>
+          <button class="ubics__drawer-close" onclick="toggleMenu(false)"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <ul class="ubics__menu-list">
+          <li><a href="home.html" class="ubics__menu-link">Home</a></li>
+          <li><a href="personajes.html" class="ubics__menu-link">Personajes</a></li>
+          <li><a href="temporadas.html" class="ubics__menu-link">Temporadas</a></li>
+          <li><a href="tipos-zombies.html" class="ubics__menu-link">Tipos Zombies</a></li>
+          <li><a href="ubicaciones.html" class="ubics__menu-link active">Ubicaciones</a></li>
+        </ul>
+        <a href="bienvenida.html" class="ubics__logout">Cerrar Sesión</a>
+      </nav>
+
+      <div class="ubics__search-wrapper">
+        <i class="fa-solid fa-magnifying-glass ubics__search-icon"></i>
+        <input type="search" class="ubics__search" placeholder="Buscar ubicación..." />
+      </div>
+
+      <ul class="ubics__list" id="ubics-list">
+
+        <li class="ubics__item" onclick="location.href='ubicacion-detalle.html'">
+          <div class="ubics__thumb ubics__thumb--alexandria"></div>
+          <div class="ubics__info">
+            <span class="ubics__name">Alexandria</span>
+            <small class="ubics__meta">Asentamiento · Activo</small>
+          </div>
+          <i class="fa-solid fa-chevron-right ubics__chevron"></i>
+        </li>
+
+        <li class="ubics__item" onclick="location.href='ubicacion-detalle.html'">
+          <div class="ubics__thumb ubics__thumb--granja"></div>
+          <div class="ubics__info">
+            <span class="ubics__name">Granja de Hershel</span>
+            <small class="ubics__meta">Asentamiento · Destruido</small>
+          </div>
+          <i class="fa-solid fa-chevron-right ubics__chevron"></i>
+        </li>
+
+        <li class="ubics__item" onclick="location.href='ubicacion-detalle.html'">
+          <div class="ubics__thumb ubics__thumb--prision"></div>
+          <div class="ubics__info">
+            <span class="ubics__name">Prisión</span>
+            <small class="ubics__meta">Asentamiento · Destruido</small>
+          </div>
+          <i class="fa-solid fa-chevron-right ubics__chevron"></i>
+        </li>
+
+        <li class="ubics__item" onclick="location.href='ubicacion-detalle.html'">
+          <div class="ubics__thumb ubics__thumb--woodbury"></div>
+          <div class="ubics__info">
+            <span class="ubics__name">Woodbury</span>
+            <small class="ubics__meta">Zona Peligrosa · Destruido</small>
+          </div>
+          <i class="fa-solid fa-chevron-right ubics__chevron"></i>
+        </li>
+
+        <li class="ubics__item" onclick="location.href='ubicacion-detalle.html'">
+          <div class="ubics__thumb ubics__thumb--terminus"></div>
+          <div class="ubics__info">
+            <span class="ubics__name">Terminus</span>
+            <small class="ubics__meta">Zona Peligrosa · Abandonado</small>
+          </div>
+          <i class="fa-solid fa-chevron-right ubics__chevron"></i>
+        </li>
+
+      </ul>
+
+      <a href="ubicacion-crear.html" class="ubics__fab" aria-label="Crear ubicación">
+        <i class="fa-solid fa-plus"></i>
+      </a>
+
+    </main>
+  </div>
+  <script>
+    function toggleMenu(open) {
+      document.getElementById('ubics-drawer').classList.toggle('open', open);
+    }
+    document.querySelector('.ubics__search').addEventListener('input', function() {
+      const q = this.value.toLowerCase();
+      document.querySelectorAll('.ubics__item').forEach(item => {
+        const name = item.querySelector('.ubics__name').textContent.toLowerCase();
+        const meta = item.querySelector('.ubics__meta').textContent.toLowerCase();
+        item.style.display = (name + meta).includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

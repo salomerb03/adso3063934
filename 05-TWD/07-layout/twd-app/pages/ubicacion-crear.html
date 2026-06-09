@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Nueva Ubicación</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/ubicaciones.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="ubic-form">
+
+      <header class="ubic-form__header">
+        <a href="ubicaciones.html" class="btn-back-u"><i class="fa-solid fa-arrow-left"></i></a>
+        <h2 class="ubic-form__title">NUEVA UBICACIÓN</h2>
+      </header>
+
+      <div class="ubic-form__img-wrapper">
+        <div class="ubic-form__img-placeholder" id="img-placeholder">
+          <i class="fa-regular fa-image"></i>
+          <span>Agregar imagen</span>
+        </div>
+      </div>
+
+      <div class="ubic-form__fields">
+
+        <div class="tf-field">
+          <label>Nombre</label>
+          <div class="tf-input-wrap">
+            <i class="fa-solid fa-location-dot tf-icon"></i>
+            <input type="text" placeholder="Ingresa el nombre" />
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Tipo</label>
+          <div class="uf-tipo-group" id="tipo-group">
+            <button type="button" class="uf-tipo-btn" data-tipo="asentamiento" onclick="selectTipo(this)">
+              <i class="fa-solid fa-house"></i> Asentamiento
+            </button>
+            <button type="button" class="uf-tipo-btn" data-tipo="peligrosa" onclick="selectTipo(this)">
+              <i class="fa-solid fa-skull-crossbones"></i> Zona Peligrosa
+            </button>
+            <button type="button" class="uf-tipo-btn" data-tipo="neutral" onclick="selectTipo(this)">
+              <i class="fa-solid fa-circle-half-stroke"></i> Neutral
+            </button>
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Estado</label>
+          <div class="uf-estado-group" id="estado-group">
+            <button type="button" class="uf-estado-btn" data-estado="activo" onclick="selectEstado(this)">
+              <i class="fa-solid fa-check-circle"></i> Activo
+            </button>
+            <button type="button" class="uf-estado-btn" data-estado="destruido" onclick="selectEstado(this)">
+              <i class="fa-solid fa-xmark-circle"></i> Destruido
+            </button>
+            <button type="button" class="uf-estado-btn" data-estado="abandonado" onclick="selectEstado(this)">
+              <i class="fa-solid fa-door-open"></i> Abandonado
+            </button>
+          </div>
+        </div>
+
+        <div class="tf-field">
+          <label>Descripción</label>
+          <textarea class="tf-textarea" placeholder="Ingresa una descripción" rows="4"></textarea>
+        </div>
+
+      </div>
+
+      <div class="ubic-form__footer">
+        <a href="ubicaciones.html" class="btn-primary">GUARDAR</a>
+      </div>
+
+    </main>
+  </div>
+  <script>
+    function selectTipo(btn) {
+      document.querySelectorAll('.uf-tipo-btn').forEach(b => {
+        b.className = 'uf-tipo-btn';
+      });
+      btn.classList.add('active--' + btn.dataset.tipo);
+    }
+    function selectEstado(btn) {
+      document.querySelectorAll('.uf-estado-btn').forEach(b => {
+        b.className = 'uf-estado-btn';
+      });
+      btn.classList.add('active--' + btn.dataset.estado);
+    }
+  </script>
+</body>
+</html>

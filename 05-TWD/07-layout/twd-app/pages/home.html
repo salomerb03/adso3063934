@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Walking Dead — Dashboard</title>
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="phone-frame">
+    <main class="home" id="home-page">
+      <header class="home__header">
+        <img class="home__logo" src="../assets/img/logo-twd.png" alt="The Walking Dead" />
+        <button class="home__menu-btn" aria-label="Abrir menú" onclick="toggleMenu(true)">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </header>
+
+      <nav class="home__drawer" aria-label="Menú de navegación">
+        <div class="home__drawer-header">
+          <span>Menú</span>
+          <button class="home__drawer-close" aria-label="Cerrar menú" onclick="toggleMenu(false)">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <ul class="home__menu-list">
+          <li><a href="#" class="home__menu-link active">Home</a></li>
+          <li><a href="personajes.html" class="home__menu-link">Personajes</a></li>
+          <li><a href="temporadas.html" class="home__menu-link">Temporadas</a></li>
+          <li><a href="tipos-zombies.html" class="home__menu-link">Tipos Zombies</a></li>
+          <li><a href="ubicaciones.html" class="home__menu-link">Ubicaciones</a></li>        </ul>
+        <a href="bienvenida.html" class="home__logout">Cerrar Sesión</a>
+      </nav>
+
+      <section class="home__top-card">
+        <article class="home__hero-card">
+          <div class="home__hero-overlay"></div>
+          <div class="home__hero-copy">
+            <span>Bienvenido de vuelta,</span>
+            <h1>Rick.</h1>
+          </div>
+        </article>
+      </section>
+
+      <section class="home__stats">
+        <article class="home__stat-card">
+          <div class="home__stat-icon"><i class="fa-solid fa-users"></i></div>
+          <strong>375</strong>
+          <p>Personajes</p>
+        </article>
+        <article class="home__stat-card">
+          <div class="home__stat-icon"><i class="fa-solid fa-calendar-days"></i></div>
+          <strong>177</strong>
+          <p>Episodios</p>
+        </article>
+        <article class="home__stat-card">
+          <div class="home__stat-icon"><i class="fa-solid fa-clapperboard"></i></div>
+          <strong>11</strong>
+          <p>Temporadas</p>
+        </article>
+        <article class="home__stat-card">
+          <div class="home__stat-icon"><i class="fa-solid fa-skull"></i></div>
+          <strong>5</strong>
+          <p>Tipos de Caminantes</p>
+        </article>
+      </section>
+
+      <article class="home__location-card">
+        <div>
+          <span class="home__location-icon"><i class="fa-solid fa-map-marker-alt"></i></span>
+          7 Ubicaciones
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+      </article>
+
+      <section class="home__featured">
+        <div class="home__featured-header">
+          <h2>Personajes Destacados</h2>
+          <a href="#">Ver todos</a>
+        </div>
+        <div class="home__featured-grid">
+          <article class="home__character-card">
+            <div class="home__character-avatar home__avatar-rick"></div>
+            <div class="home__character-details">
+              <span>Rick Grimes</span>
+              <small class="status status--alive">VIVO</small>
+            </div>
+          </article>
+
+          <article class="home__character-card">
+            <div class="home__character-avatar home__avatar-daryl"></div>
+            <div class="home__character-details">
+              <span>Daryl Dixon</span>
+              <small class="status status--alive">VIVO</small>
+            </div>
+          </article>
+
+          <article class="home__character-card">
+            <div class="home__character-avatar home__avatar-michonne"></div>
+            <div class="home__character-details">
+              <span>Michonne</span>
+              <small class="status status--alive">VIVO</small>
+            </div>
+          </article>
+
+          <article class="home__character-card">
+            <div class="home__character-avatar home__avatar-carl"></div>
+            <div class="home__character-details">
+              <span>Carl Grimes</span>
+              <small class="status status--dead">MUERTO</small>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    function toggleMenu(open) {
+      document.getElementById('home-page').classList.toggle('menu-open', open);
+    }
+  </script>
+</body>
+</html>
