@@ -26,11 +26,12 @@
           </button>
         </div>
         <ul class="home__menu-list">
-          <li><a href="#" class="home__menu-link active">Home</a></li>
-          <li><a href="personajes.html" class="home__menu-link">Personajes</a></li>
-          <li><a href="temporadas.html" class="home__menu-link">Temporadas</a></li>
-          <li><a href="tipos-zombies.html" class="home__menu-link">Tipos Zombies</a></li>
-          <li><a href="ubicaciones.html" class="home__menu-link">Ubicaciones</a></li>        </ul>
+          <li><a href="#" class="home__menu-link active" onclick="toggleMenu(false)">Home</a></li>
+          <li><a href="personajes.html" class="home__menu-link" onclick="toggleMenu(false)">Personajes</a></li>
+          <li><a href="temporadas.html" class="home__menu-link" onclick="toggleMenu(false)">Temporadas</a></li>
+          <li><a href="tipos-zombies.html" class="home__menu-link" onclick="toggleMenu(false)">Tipos Zombies</a></li>
+          <li><a href="ubicaciones.html" class="home__menu-link" onclick="toggleMenu(false)">Ubicaciones</a></li>
+        </ul>
         <a href="bienvenida.html" class="home__logout">Cerrar Sesión</a>
       </nav>
 
@@ -67,7 +68,7 @@
         </article>
       </section>
 
-      <article class="home__location-card">
+      <article class="home__location-card" onclick="location.href='ubicaciones.html'">
         <div>
           <span class="home__location-icon"><i class="fa-solid fa-map-marker-alt"></i></span>
           7 Ubicaciones
